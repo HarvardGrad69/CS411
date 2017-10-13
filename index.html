@@ -33,39 +33,34 @@
         <!-- Meta tags-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-    <body>
-	<header id="header">
-		<div class="container">
-        		<div col-xs-4>
-                		<img class="img-responsive headerImg" src="https://www.shareicon.net/data/256x256/2016/08/18/809114_miscellaneous_512x512.png"/>
-                	</div>
-                	<div col-xs-6>
-                    		<h1 class="title">Crime Detection</h1>
-                	</div>
-       		</div>
-	</header>
-    <?php
-        //test php script
-        $connect = mysqli_connect("localhost", "root", "password123", "test");  
-        /* check connection */
-        if (mysqli_connect_errno()) {
-            printf("Connect failed: %s\n", mysqli_connect_error());
-            exit();
-        }
-
-        $query = "SELECT * FROM team";
-        $result = mysqli_query($connect, $query);
-        echo "<table>"; // start a table tag in the HTML
-
-        while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-            echo "<tr><td>" . $row['FirstName'] . "</td><td>" . $row['netid'] . "</td></tr>";  //$row['index'] the index here is a field name
-        }
-
-        echo "</table>"; //Close the table in HTML
-
-        mysql_close(); //Make sure to close out the database connection
-
-    ?>
+    <body ng-app="myApp" ng-controller="myCtrl">
+        <header id="header">
+            <div class="container">
+                    <div col-xs-4>
+                            <img class="img-responsive headerImg" src="https://www.shareicon.net/data/256x256/2016/08/18/809114_miscellaneous_512x512.png"/>
+                        </div>
+                        <div col-xs-6>
+                                <h1 class="title">Crime Detection</h1>
+                        </div>
+                </div>
+        </header>
+        <table>
+            <tr ng-repeat="entry in sample">
+                <td>{{entry.FirstName}}</td>
+                <td>{{entry.netid}}</td>
+            </tr>
+        </table>
     </body>
+
+    <script>
+    var app = angular.module("myApp", []);
+        app.controller("myCtrl", function($scope, $http) {
+            $http.get("api/test.php")	
+            .success(function(data){
+                console.log(data);
+                $scope.sample = data;
+            });
+        });
+    </script>
 
 </html>
