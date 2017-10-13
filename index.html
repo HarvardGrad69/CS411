@@ -1,0 +1,75 @@
+<!DOCTYPE HTML
+<html>
+    <head>
+        <title>Crime Detection</title>
+        <!-- Latest compiled and minified AngularJavaScript and Route-->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+	
+	    <!--Angular Material CSS -->
+          <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc5/angular-material.min.css">
+        <!-- Other script files -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc5/angular-material.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
+
+	    <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <!-- FavIcons -->
+        <script src="https://use.fontawesome.com/62c2b58f00.js"></script>
+
+        <!--Local CSS Files -->
+        <link rel=stylesheet href="styles/index.css"/>
+        <!--Local JS Files -->
+        <script type="text/javascript" src="app.route.js"></script>
+        <!--Custom font inclusion-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+        <!-- Meta tags-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+	<header id="header">
+		<div class="container">
+        		<div col-xs-4>
+                		<img class="img-responsive headerImg" src="https://www.life.illinois.edu/index/assets/UIUC_logo.png"/>
+                	</div>
+                	<div col-xs-6>
+                    		<h1 class="title">Crime Detection</h1>
+                	</div>
+       		</div>
+	</header>
+    <?php
+        //test php script
+        $connect = mysqli_connect("localhost", "root", "password123", "test");  
+        /* check connection */
+        if (mysqli_connect_errno()) {
+            printf("Connect failed: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $query = "SELECT * FROM team";
+        $result = mysqli_query($connect, $query);
+        echo("<table>");
+        if(mysqli_num_rows($result)>0){
+            while($row = mysqli_fetch_array($result))
+            {
+                echo '<tr>';
+                foreach ($row as $key => $field) {
+                    # code...
+                    echo '<td>' . htmlspecialchars($field) . '</td>';
+                }
+                echo '</tr>'
+            }
+        }
+        echo("</table>");
+
+    ?>
+    </body>
+
+</html>
