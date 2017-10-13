@@ -55,19 +55,15 @@
 
         $query = "SELECT * FROM team";
         $result = mysqli_query($connect, $query);
-        echo("<table>");
-        if(mysqli_num_rows($result)>0){
-            while($row = mysqli_fetch_array($result))
-            {
-                echo '<tr>';
-                foreach ($row as $key => $field) {
-                    # code...
-                    echo '<td>' . htmlspecialchars($field) . '</td>';
-                }
-                echo '</tr>'
-            }
+        echo "<table>"; // start a table tag in the HTML
+
+        while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
+            echo "<tr><td>" . $row['FirstName'] . "</td><td>" . $row['netid'] . "</td></tr>";  //$row['index'] the index here is a field name
         }
-        echo("</table>");
+
+        echo "</table>"; //Close the table in HTML
+
+        mysql_close(); //Make sure to close out the database connection
 
     ?>
     </body>
