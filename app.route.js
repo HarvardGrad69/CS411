@@ -128,10 +128,10 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
 
     $scope.updateEntry = function(){
         if($scope.selectedCrime != null && AuthService.isAdmin()){
-            console.log($scope.crimeList[$scope.selectedCrime])
+            console.log($scope.selectedCrime)
             $http.post(
                 "api/updateEntry.php",
-                {'ID':$scope.crimeList[$scope.selectedCrime].ID, 'Description':$scope.crimeList[$scope.selectedCrime].Description}
+                {'ID':$scope.selectedCrime.ID, 'Description':$scope.selectedCrime.Description}
             ).success(function(data){
                 alert("Updated successfully!");
                 $scope.initSearch();
