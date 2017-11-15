@@ -33,9 +33,9 @@
             <td>{{crime.ID}}</td>
             <td>{{crime.Arrest}}</td>
             <td>{{crime.Description}}</td>
-            <td>{{crime.Date}}</td>
+            <td>{{crime.Datetime}}</td>
             <td>{{crime.Neighbourhood}}</td>
-            <td><a data-toggle="modal" data-target="#updateModal" ng-click="gotoView(crime.ID)">Update</a>/<a ng-click="gotoDelete(crime.ID)">Delete</a></td>
+            <td><a data-toggle="modal" data-target="#updateModal" ng-click="selectedCrime = crime">Update</a>/<a ng-click="deleteEntry(crime.ID)">Delete</a></td>
         </tr>
     </table>
 </div>
@@ -49,6 +49,14 @@
             </div>
             <div class="modal-body">
                 <!-- Enter stuff here to Update -->
+                Only admins can use this to update the Description of the Crime.
+                If you need to update more information, please delete and add a new crime!
+                <div>
+                    <label>Search by Neighbourhood</label>
+                    <input type="text"  ng-model="selectedCrime.Description">
+                </div>
+                <button type="submit" class="btn btn-default" ng-click="updateEntry()">Search</button>
+
             </div>
         </div>
     </div>

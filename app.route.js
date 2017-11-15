@@ -113,4 +113,28 @@ app.controller("searchCtrl", function($scope, $http) {
             });
         }
     };
+
+    $scope.deleteEntry = function(id){
+        if(confirm("Delete crime entry with ID" + id) == true){
+            $http.post(
+                "api/deleteCrimeEntry.php",
+                {'ID':id}
+            ).success(function(data){
+                alert("Deleted successfully!");
+                $scope.search();
+            })
+        }
+    };
+
+    $scope.updateEntry = function(){
+        if($scope.selectedCrime != null){
+            $http.post(
+                "api/updateEntry.php",
+                {'ID':$scope.selectedCrime.ID, 'Description':$scope.selectedCrime.Description}
+            ).success(function(data){
+                alert("Updated successfully!");
+                $scope.search();
+            })
+        }
+    }
 });
