@@ -90,7 +90,7 @@ app.controller('loginCtrl', function($scope,$location,$http,$localStorage, AuthS
 	}; 
 });
 
-app.controller("searchCtrl", function($scope, $http) {
+app.controller("searchCtrl", function($scope, $http, AuthService) {
     $scope.initSearch = function(){
         $http.get(
             "api/initialSearch.php"
@@ -127,7 +127,8 @@ app.controller("searchCtrl", function($scope, $http) {
     };
 
     $scope.updateEntry = function(){
-        if($scope.selectedCrime != null){
+        if($scope.selectedCrime != null && AuthService.isAdmin()){
+            console.log($scope.selectedCrime)
             $http.post(
                 "api/updateEntry.php",
                 {'ID':$scope.selectedCrime.ID, 'Description':$scope.selectedCrime.Description}
