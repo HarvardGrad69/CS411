@@ -121,20 +121,20 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
                 {'ID':id}
             ).success(function(data){
                 alert("Deleted successfully!");
-                $scope.search();
+                $scope.initSearch();
             })
         }
     };
 
     $scope.updateEntry = function(){
         if($scope.selectedCrime != null && AuthService.isAdmin()){
-            console.log($scope.selectedCrime)
+            console.log($scope.crimeList[$scope.selectedCrime])
             $http.post(
                 "api/updateEntry.php",
-                {'ID':$scope.selectedCrime.ID, 'Description':$scope.selectedCrime.Description}
+                {'ID':$scope.crimeList[$scope.selectedCrime].ID, 'Description':$scope.crimeList[$scope.selectedCrime].Description}
             ).success(function(data){
                 alert("Updated successfully!");
-                $scope.search();
+                $scope.initSearch();
             })
         }
     }
