@@ -37,6 +37,14 @@
             <td>{{crime.Neighbourhood}}</td>
             <td><a data-toggle="modal" data-target="#updateModal" ng-click="updateSelected(crime)">Update</a>/<a ng-click="deleteEntry(crime.ID)">Delete</a></td>
         </tr>
+        <tr>
+            <td></td>
+            <td><input type="number" name="Arrest" ng-model="newCrime.Arrest"></td>
+            <td><input type="text" name="Description" value="newCrime.Description"></td>
+            <td><input type="datetime" name="Date" value="newCrime.Datetime"></td>
+            <td><input type="text" name="Neighbourhood" value="newCrime.Neighbourhood"></td>
+            <td><a ng-click="addCrime()">Add</a></td>
+        </tr>
     </table>
 </div>
 

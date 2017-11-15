@@ -115,14 +115,16 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
     };
 
     $scope.deleteEntry = function(id){
-        if(confirm("Delete crime entry with ID" + id) == true){
-            $http.post(
-                "api/deleteCrimeEntry.php",
-                {'ID':id}
-            ).success(function(data){
-                alert("Deleted successfully!");
-                $scope.initSearch();
-            })
+        if(AuthService.isAdmin()){
+            if(confirm("Delete crime entry with ID" + id) == true){
+                $http.post(
+                    "api/deleteCrimeEntry.php",
+                    {'ID':id}
+                ).success(function(data){
+                    alert("Deleted successfully!");
+                    $scope.initSearch();
+                })
+            }
         }
     };
 
@@ -140,7 +142,20 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
     };
 
     $scope.updateSelected = function(crime){
-	$scope.selectedCrime = crime;
-	console.log($scope.selectedCrime);
+	    $scope.selectedCrime = crime;
+	    console.log($scope.selectedCrime);
     };
+
+    $scope.addCrime = function(){
+        if($scope.newCrime != null && AuthService.isAdmin()){
+            $http.post(
+                "api/addEntry.php",
+                {'Arrest':$scope.newCrime.Arrest, 'Description':$scope.newCrime.Description,'Datetime':$scope.newCrime.Datetime, 'Neighbourhood':$scope.newCrime.Neighbourhood}
+            ).success(function(data){
+                console.log(data);
+                alert("Added successfully!");
+                $scope.initSearch();
+            })
+        }
+    }
 });
