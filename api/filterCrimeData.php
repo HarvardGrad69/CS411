@@ -1,5 +1,5 @@
 <?php
-//initialSearch.php
+//filterCrimeData.php
 
 $connect = mysqli_connect("localhost", "root", "password123", "crimedata");  
 /* check connection */
@@ -8,6 +8,9 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
+    $data = json_decode(file_get_contents("php://input"));
+
+    $keyword = mysqli_real_escape_string($connect, $data->keyword);
 	$output = array();
 	$querySubTbl = 
 		"SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID";
