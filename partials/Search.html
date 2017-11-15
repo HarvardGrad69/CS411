@@ -1,0 +1,55 @@
+<div class="col-xs-12 col-md-8">
+    <h2>Search</h2>
+    <form class="col-xs-12 col-md-8">
+        <div class="form-group">
+            <label>Search by Neighbourhood</label>
+            <input type="text" class="form-control" id="exampleInputName1" ng-model="keyword" placeholder="Example: Bridgeport or Armour Square">
+        </div>
+
+    <button type="submit" class="btn btn-default" ng-click="search()">Search</button>
+    </form>
+</div>
+
+<div class="col-xs-12 col-md-8">
+    <h3 class="pull-left">Search Results</h3>
+    <br/>
+    <div>
+    <p class = "col-xs-12 col-md-8">Use this search feature to delete or view more data about each crime. 
+    Hit view to see all crime data.</p>
+    </div>
+</div>
+
+<div class="col-xs-12 col-md-8" ng-init="initSearch()">
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Arrest</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Neighbourhood</th>
+            <th>Actions</th>
+        </tr>
+        <tr ng-repeat="crime in crimeList">
+            <td>{{crime.ID}}</td>
+            <td>{{crime.Arrest}}</td>
+            <td>{{crime.Description}}</td>
+            <td>{{crime.Date}}</td>
+            <td>{{crime.Neighbourhood}}</td>
+            <td><a data-toggle="modal" data-target="#updateModal" ng-click="gotoView(crime.ID)">Update</a>/<a ng-click="gotoDelete(crime.ID)">Delete</a></td>
+        </tr>
+    </table>
+</div>
+
+<div class="modal fade" id="updateModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update Data</h4>
+            </div>
+            <div class="modal-body">
+                <!-- Enter stuff here to Update -->
+            </div>
+        </div>
+    </div>
+</div>

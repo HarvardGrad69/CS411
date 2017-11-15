@@ -1,4 +1,4 @@
-<!DOCTYPE HTML
+<!DOCTYPE HTML>
 <html>
     <head>
         <title>Crime Detection</title>
@@ -26,14 +26,14 @@
 
         <!--Local CSS Files -->
         <link rel=stylesheet href="styles/index.css"/>
-        <!--Local JS Files -->
-        <script type="text/javascript" src="app.route.js"></script>
+        <!--Local JS Files 
+        <script type="text/javascript" src="app.route.js"></script> -->
         <!--Custom font inclusion-->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
         <!-- Meta tags-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-    <body ng-app="myApp" ng-controller="myCtrl">
+    <body>
         <header id="header">
             <div class="container">
                     <div col-xs-4>
@@ -44,101 +44,8 @@
                         </div>
                 </div>
         </header>
-        <div class="col-xs-12 col-md-8">
-            <h2>Search</h2>
-            <form class="col-xs-12 col-md-8">
-                <div class="form-group">
-                    <label>Search by Neighbourhood</label>
-                    <input type="text" class="form-control" id="exampleInputName1" ng-model="keyword" placeholder="Example: Bridgeport or Armour Square">
-                </div>
-
-            <button type="submit" class="btn btn-default" ng-click="search()">Search</button>
-            </form>
+        <div ng-app="myApp">
+            <div ng-view></div>
         </div>
-
-
-
-
-        <div class="col-xs-12 col-md-8">
-            <h3 class="pull-left">Search Results</h3>
-            <br/>
-            <div>
-            <p class = "col-xs-12 col-md-8">Use this search feature to delete or view more data about each crime. 
-            Hit view to see all crime data.</p>
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-md-8" ng-init="initSearch()">
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID</th>
-                    <th>Arrest</th>
-                    <th>Description</th>
-                    <th>Date</th>
-                    <th>Neighbourhood</th>
-                    <th>Actions</th>
-                </tr>
-                <tr ng-repeat="crime in crimeList">
-                    <td>{{crime.ID}}</td>
-                    <td>{{crime.Arrest}}</td>
-                    <td>{{crime.Description}}</td>
-                    <td>{{crime.Date}}</td>
-                    <td>{{crime.Neighbourhood}}</td>
-                    <td><a data-toggle="modal" data-target="#updateModal" ng-click="gotoView(crime.ID)">Update</a>/<a ng-click="gotoDelete(crime.ID)">Delete</a></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="modal fade" id="updateModal" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Update Data</h4>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Enter stuff here to Update -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </body>
-
-    <script>
-        var app = angular.module("myApp", []);
-        app.controller("myCtrl", function($scope, $http) {
-            $http.get("api/test.php")	
-            .success(function(data){
-                console.log(data);
-                $scope.sample = data;
-            });
-
-            $scope.initSearch = function(){
-                $http.get(
-                    "api/initialSearch.php"
-                ).success(function(data){
-                    $scope.crimeList = data;
-                    console.log($scope.crimeList);
-                });
-            };
-
-            $scope.search = function(){
-                if($scope.keyword == null)
-                    alert("Please input a field");
-                else{
-                    $http.post(
-                        "api/getCrimeData.php",
-                        {'keyword':$scope.keyword}
-                    ).success(function(data){
-                        $scope.crimeList = data;
-                        console.log($scope.crimeList);
-                    });
-                }
-            };
-
-        });
-        
-    </script>
-
 </html>
