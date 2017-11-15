@@ -72,22 +72,37 @@
             <table class="table table-bordered">
                 <tr>
                     <th>ID</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>Neighbourhood</th>
+                    <th>Arrest</th>
                     <th>Description</th>
+                    <th>Date</th>
+                    <th>Neighbourhood</th>
                     <th>Actions</th>
                 </tr>
                 <tr ng-repeat="crime in crimeList">
                     <td>{{crime.ID}}</td>
-                    <td>{{crime.Latitude}}</td>
-                    <td>{{crime.Longitude}}</td>
-                    <td>{{crime.Neighbourhood}}</td>
+                    <td>{{crime.Arrest}}</td>
                     <td>{{crime.Description}}</td>
-                    <td><a ng-click="gotoView(crime.ID)">View</a>/<a ng-click="gotoDelete(crime)">Delete</a></td>
+                    <td>{{crime.Date}}</td>
+                    <td>{{crime.Neighbourhood}}</td>
+                    <td><a data-toggle="modal" data-target="#updateModal" ng-click="gotoView(crime.ID)">Update</a>/<a ng-click="gotoDelete(crime.ID)">Delete</a></td>
                 </tr>
             </table>
         </div>
+
+        <div class="modal fade" id="updateModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Update Data</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Enter stuff here to Update -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </body>
 
     <script>
