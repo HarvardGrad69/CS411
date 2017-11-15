@@ -12,7 +12,7 @@
 		$Arrest = $data->Arrest;
 		$Neighbourhood = mysqli_real_escape_string($connect, $data->Neighbourhood);
 		$Description = mysqli_real_escape_string($connect, $data->Description);
-		$ID = (round(microtime(true)* 1000));
+		$ID = mt_rand(1,20000);
 		
 		//Formatting our datetime
 		$date = mysqli_real_escape_string($connect, $data->Datetime);
