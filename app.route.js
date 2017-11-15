@@ -137,5 +137,10 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
                 $scope.initSearch();
             })
         }
-    }
+    };
+
+    $scope.updateSelected = function(crime){
+	$scope.selectedCrime = crime;
+	console.log($scope.selectedCrime);
+    };
 });
