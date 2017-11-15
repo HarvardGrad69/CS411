@@ -70,7 +70,7 @@ app.controller('homeCtrl',function($scope,$location){
 app.controller('loginCtrl', function($scope,$location,$http,$localStorage, AuthService){
 	$scope.login = function(){
 		$http.post(
-            "ajax/login.php",
+            "api/login.php",
             { 'username':$scope.username, 'password':$scope.password}
         ).success(function(data){
             if(data==null){
