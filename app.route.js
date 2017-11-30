@@ -67,6 +67,70 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
     });
 }]);
 
+app.directive('myMap', function() {
+    // directive link function
+    var link = function(scope, element, attrs) {
+        var map, infoWindow;
+        var markers = [];
+        
+        // map config
+        var mapOptions = {
+            center: new google.maps.LatLng(50, 2),
+            zoom: 4,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            scrollwheel: false
+        };
+        
+        // init the map
+        function initMap() {
+            if (map === void 0) {
+                map = new google.maps.Map(element[0], mapOptions);
+            }
+        }    
+        
+        // place a marker
+        function setMarker(map, position, title, content) {
+            var marker;
+            var markerOptions = {
+                position: position,
+                map: map,
+                title: title,
+                icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+            };
+
+            marker = new google.maps.Marker(markerOptions);
+            markers.push(marker); // add marker to array
+            
+            google.maps.event.addListener(marker, 'click', function () {
+                // close window if not undefined
+                if (infoWindow !== void 0) {
+                    infoWindow.close();
+                }
+                // create new window
+                var infoWindowOptions = {
+                    content: content
+                };
+                infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+                infoWindow.open(map, marker);
+            });
+        }
+        
+        // show the map and place some markers
+        initMap();
+        
+        setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
+        setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
+        setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Text here');
+    };
+    
+    return {
+        restrict: 'A',
+        template: '<div id="gmaps"></div>',
+        replace: true,
+        link: link
+    };
+});
+
 app.controller('homeCtrl',function($scope,$location){
 	$scope.gotoLogin = function () {
 		$location.path('/login');
@@ -178,5 +242,46 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
 });
 
 app.controller('mapCtrl', function($scope,$http, AuthService){
-	
+	var mapOptions = {
+        zoom: 4,
+        center: new google.maps.LatLng(0, 0),
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    }
+
+    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    $scope.markers = [];
+    //create some markers
+    for (var i = 1; i < 11; ++i) {
+        $scope.markers.push(new google.maps.Marker({
+            position: new google.maps.LatLng(0, 0),
+            desc: '<div class="iw">description for Marker#' + i + '</div>',
+            icon: 'https://mt.google.com/vt/icon?psize=12&font=fonts/Roboto-Regular.ttf&color=ff330000&name=icons/spotlight/spotlight-waypoint-a.png&ax=44&ay=48&scale=1&text=' + i
+        }))
+    }
+    $scope.oms = new OverlappingMarkerSpiderfier($scope.map, {
+        keepSpiderfied: true
+    });
+    $scope.oms.addListener('unspiderfy', function () {
+        $scope.iw.close();
+    });
+
+    //create a single InfoWindow-instance
+    $scope.iw = new google.maps.InfoWindow();
+    google.maps.event.addListener($scope.iw, 'closeclick', function () {
+        $scope.oms.unspiderfy();
+    });
+    //add click-listener
+    $scope.oms.addListener('click', function (marker) {
+        $scope.iw.close();
+        $scope.iw.setContent(marker.desc);
+        $scope.iw.open($scope.map, marker);
+
+    });
+
+    //add the markers to the oms
+    for (var i = 0; i < $scope.markers.length; ++i) {
+        $scope.markers[i].setMap($scope.map);
+        $scope.oms.addMarker($scope.markers[i]);
+    }
+
 });
