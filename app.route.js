@@ -176,3 +176,7 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
         }
     }
 });
+
+app.controller('mapCtrl', function($scope,$http, AuthService){
+	
+});
