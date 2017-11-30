@@ -19,6 +19,12 @@ app.config(function($routeProvider){
 			templateUrl:"partials/Search.html",
 			controller:"searchCtrl"
 		}
+         )
+    .when("/map",
+		{
+			templateUrl:"partials/map.html",
+			controller:"mapCtrl"
+		}
 	     )
 	.otherwise(
 		{
@@ -65,6 +71,17 @@ app.controller('homeCtrl',function($scope,$location){
 	$scope.gotoLogin = function () {
 		$location.path('/login');
 	};
+});
+
+app.controller('headerCtrl',function($scope,$location,AuthService){
+	$scope.isActive = function (viewLocation) {
+		return viewLocation === $location.path();
+	};
+
+	$scope.isAdmin = function(){
+		var bool =  AuthService.isAdmin();
+		return bool;
+	}
 });
 
 app.controller('loginCtrl', function($scope,$location,$http,$localStorage, AuthService){
