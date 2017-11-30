@@ -22,20 +22,22 @@
 		$year = date("y", $timestamp);
 		$day = date("d", $timestamp);
 
-		$query = "INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
-		INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
-		INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID, '$ID');";
+		$query = "INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day'); ";
+		mysqli_query($connect, $query);
+		$query2 = "INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL); ";
+		mysqli_query($connect, $query2);
+		$query3 = "INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');";
+		
 		$res = array(
 			'ID' => $ID
 		);
-		if(mysqli_query($connect, $query))  
+		if(mysqli_query($connect, $query3))  
 		{  
 			echo json_encode($res);  
 		}  
 		else  
 		{  
-		   $res['ExpID'] = 0;	
-		   echo json_encode($res);  
+		   echo json_encode($query3);  
 		}  
  	}	  
  ?> 

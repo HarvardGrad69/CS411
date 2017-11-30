@@ -40,9 +40,9 @@
         <tr>
             <td></td>
             <td><input type="number" name="Arrest" ng-model="newCrime.Arrest"></td>
-            <td><input type="text" name="Description" value="newCrime.Description"></td>
-            <td><input type="datetime" name="Date" value="newCrime.Datetime"></td>
-            <td><input type="text" name="Neighbourhood" value="newCrime.Neighbourhood"></td>
+            <td><input type="text" name="Description" ng-model="newCrime.Description"></td>
+            <td><md-datepicker ng-model="newCrime.Datetime" md-placeholder="Enter date"></md-datepicker></td>
+            <td><input type="text" name="Neighbourhood" ng-model="newCrime.Neighbourhood"></td>
             <td><a ng-click="addCrime()">Add</a></td>
         </tr>
     </table>
