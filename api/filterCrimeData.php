@@ -1,7 +1,7 @@
 <?php
 //filterCrimeData.php
 
-$connect = mysqli_connect("localhost", "root", "password123", "crimedata");  
+$connect = mysqli_connect("localhost", "root", "password123", "crimedata");
 /* check connection */
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
@@ -12,7 +12,7 @@ if (mysqli_connect_errno()) {
 
     $keyword = mysqli_real_escape_string($connect, $data->keyword);
 	$output = array();
-	$querySubTbl = 
+	$querySubTbl =
 		"SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'";
 	$resultSubTbl = mysqli_query($connect, $querySubTbl);
 	if(mysqli_num_rows($resultSubTbl)>0){
@@ -20,6 +20,6 @@ if (mysqli_connect_errno()) {
 		{
 			$output[] = $row;
 		}
-		echo json_encode($output);
+		echo json_encode($output); // Hi
 	}
 ?>
