@@ -20,6 +20,7 @@ if (mysqli_connect_errno()) {
 		{
 			$output[] = $row;
 		}
-		echo json_encode($output); // Hi
+    // Hi
+		echo json_encode($output);
 	}
 ?>
