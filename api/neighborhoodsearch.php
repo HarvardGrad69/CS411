@@ -1,5 +1,4 @@
 <?php
-include 'filterCrimeData.php';
 $connect = mysqli_connect("localhost", "root", "password123", "crimedata");
 /* check connection */
 if (mysqli_connect_errno()) {
