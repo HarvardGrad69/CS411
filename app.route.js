@@ -242,5 +242,5 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
 });
 
 app.controller('mapCtrl', function($scope,$http, AuthService){
-    $scope.map = { center: { latitude: 41.8781, longitude: 87.6298 }, zoom: 8 };
+    $scope.map = { center: { latitude: 41.8781, longitude: -87.6298 }, zoom: 8 };
 });
