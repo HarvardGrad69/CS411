@@ -10,8 +10,9 @@ if (mysqli_connect_errno()) {
   $res = mysqli_query($connect,"call neighborhoodsearch()");
 
   while ($row = mysqli_fetch_array($res)){
-      echo $row[0] . " - " . + $row[1];
+    $output[] = $row;
   }
+  echo json_encode($output);
 
 
 ?>
