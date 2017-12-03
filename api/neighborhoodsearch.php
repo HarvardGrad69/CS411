@@ -5,7 +5,7 @@ if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
-  $qry =  mysql_query("create procedure neighborsearch() SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Bridgeport'");
+  $qry =  mysql_query("create procedure neighborhoodsearch() SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Bridgeport'");
   echo "Stored Procedure created.";
   $res = mysqli_query($connect,"call neighborhoodsearch()");
 
