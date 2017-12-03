@@ -192,13 +192,13 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
                 $scope.crimeList = data;
                 console.log($scope.crimeList);
             });
-						$http.post(
-                "api/neighborhoodsearch.php",
-                {'keyword':$scope.keyword}
-            ).success(function(data){
-                $scope.crimeList = data;
-                console.log($scope.crimeList);
-            });
+						// $http.post(
+            //     "api/neighborhoodsearch.php",
+            //     {'keyword':$scope.keyword}
+            // ).success(function(data){
+            //     $scope.crimeList = data;
+            //     console.log($scope.crimeList);
+            // });
         }
     };
 
