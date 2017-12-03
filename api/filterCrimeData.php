@@ -7,11 +7,10 @@ if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
-
+  session_start();
     $data = json_decode(file_get_contents("php://input"));
 
     $keyword = mysqli_real_escape_string($connect, $data->keyword);
-    session_start();
     $_SESSION['keyword'] = $keyword;
     header('Location: neighborhoodsearch.php');
 	$output = array();
