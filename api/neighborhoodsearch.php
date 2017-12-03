@@ -7,7 +7,7 @@ if (mysqli_connect_errno()) {
 }
   $qry =  mysql_query("create procedure neighborsearch() SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Bridgeport'");
   echo "Stored Procedure created.";
-  $res = mysqli_query($connect,"call neighborhoodsearch");
+  $res = mysqli_query($connect,"call neighborhoodsearch()");
 
   while ($row = mysqli_fetch_array($res)){
       echo $row[0] . " - " . + $row[1];
