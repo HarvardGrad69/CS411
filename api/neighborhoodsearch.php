@@ -6,9 +6,9 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-  $qry =  mysqli_query($connect, "create procedure neighborhoodsearch() SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Lincoln Park'");;
-  echo "Stored Procedure created.";
-  $res = mysqli_query($connect,"call neighborhoodsearch()");
+  $keyword = mysqli_real_escape_string($connect, $data->keyword);
+  $qry =  mysqli_query($connect, "create procedure search() SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
+  $res = mysqli_query($connect,"call search()");
 
   while ($row = mysqli_fetch_array($res)){
     $output[] = $row;
