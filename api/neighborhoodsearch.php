@@ -1,5 +1,5 @@
 <?php
-$connect = mysqli_connect("localhost", "root", "password123", "crimedata");
+$connect = mysql_connect("localhost", "root", "password123", "crimedata");
 /* check connection */
 if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
