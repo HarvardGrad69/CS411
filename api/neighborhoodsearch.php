@@ -5,7 +5,7 @@ if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
-  $querySubTbl =  mysqli_query('CREATE PROCEDURE neighborsearch() BEGIN SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood="Bridgeport"; END');
+  $querySubTbl =  mysql_query("CREATE PROCEDURE neighborsearch() BEGIN SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood="Bridgeport"");
   $resultSubTbl = mysqli_query($connect, $querySubTbl);
 
 ?>
