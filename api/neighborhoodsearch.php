@@ -9,7 +9,7 @@ if (mysqli_connect_errno()) {
   echo "Stored Procedure created.";
   $res = mysqli_query($connect,"call neighborhoodsearch");
 
-  while ($row = mysqli_fetch_array($result)){
+  while ($row = mysqli_fetch_array($res)){
       echo $row[0] . " - " . + $row[1];
   }
 
