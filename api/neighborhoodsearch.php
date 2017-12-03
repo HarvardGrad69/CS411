@@ -12,12 +12,12 @@ if (mysqli_connect_errno()) {
   echo $keyword;
   $output = array();
   $qry =  mysqli_query($connect, "create procedure search() SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Armour Square'");
-  // $res = mysqli_query($connect,"call search()");
-  //
-  // while ($row = mysqli_fetch_array($res)){
-  //   $output[] = $row;
-  // }
-  // echo json_encode($output);
+  $res = mysqli_query($connect,"call search()");
+
+  while ($row = mysqli_fetch_array($res)){
+    $output[] = $row;
+  }
+  echo json_encode($output);
 
 
 ?>
