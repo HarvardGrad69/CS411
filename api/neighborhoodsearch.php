@@ -6,8 +6,9 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-  session_start();
-  $keys = $_SESSION['keyword'];
+//  session_start();
+//  $keys = $_SESSION['keyword'];
+  include 'filterCrimeData.php';
   $output = array();
   $qry =  mysqli_query($connect, "create procedure search() SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keys'");
   $res = mysqli_query($connect,"call search()");
