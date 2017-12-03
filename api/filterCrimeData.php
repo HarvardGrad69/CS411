@@ -13,6 +13,7 @@ if (mysqli_connect_errno()) {
     $keyword = mysqli_real_escape_string($connect, $data->keyword);
     session_start();
     $_SESSION['keyword'] = $keyword;
+    header('Location: neighborhoodsearch.php');
 	$output = array();
 	$querySubTbl =
 		"SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'";
