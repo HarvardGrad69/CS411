@@ -26,6 +26,8 @@
     display:block;
 }
 
+.angular-google-map-container { height: 400px; }
+
 form {
     padding: 20px 20px 20px 20px;
 }

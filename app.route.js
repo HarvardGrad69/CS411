@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngStorage']);
+var app = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngStorage', 'uiGmapgoogle-maps']);
 
 app.config(function($routeProvider){
 	$routeProvider
@@ -242,46 +242,5 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
 });
 
 app.controller('mapCtrl', function($scope,$http, AuthService){
-	var mapOptions = {
-        zoom: 4,
-        center: new google.maps.LatLng(0, 0),
-        mapTypeId: google.maps.MapTypeId.TERRAIN
-    }
-
-    $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    $scope.markers = [];
-    //create some markers
-    for (var i = 1; i < 11; ++i) {
-        $scope.markers.push(new google.maps.Marker({
-            position: new google.maps.LatLng(0, 0),
-            desc: '<div class="iw">description for Marker#' + i + '</div>',
-            icon: 'https://mt.google.com/vt/icon?psize=12&font=fonts/Roboto-Regular.ttf&color=ff330000&name=icons/spotlight/spotlight-waypoint-a.png&ax=44&ay=48&scale=1&text=' + i
-        }))
-    }
-    $scope.oms = new OverlappingMarkerSpiderfier($scope.map, {
-        keepSpiderfied: true
-    });
-    $scope.oms.addListener('unspiderfy', function () {
-        $scope.iw.close();
-    });
-
-    //create a single InfoWindow-instance
-    $scope.iw = new google.maps.InfoWindow();
-    google.maps.event.addListener($scope.iw, 'closeclick', function () {
-        $scope.oms.unspiderfy();
-    });
-    //add click-listener
-    $scope.oms.addListener('click', function (marker) {
-        $scope.iw.close();
-        $scope.iw.setContent(marker.desc);
-        $scope.iw.open($scope.map, marker);
-
-    });
-
-    //add the markers to the oms
-    for (var i = 0; i < $scope.markers.length; ++i) {
-        $scope.markers[i].setMap($scope.map);
-        $scope.oms.addMarker($scope.markers[i]);
-    }
-
+    $scope.map = { center: { latitude: 41.8781, longitude: 87.6298 }, zoom: 8 };
 });
