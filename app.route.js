@@ -248,11 +248,12 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
           latitude: 41.8781,
           longitude: -87.6298
         },
-        zoom: 10,
+        zoom: 12,
       };
     $scope.options = {
         scrollwheel: false
     };
+    $scope.randomMarkers = [];
     var createRandomMarker = function(i, lat, long, idKey) {  
         if (idKey == null) {
             idKey = "id";
@@ -278,9 +279,9 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
             ).success(function(data){
                 $scope.crimeList = data;
                 console.log($scope.crimeList);
-                var markers = [];
+               var markers = [];
                 
-                for (var i = 0; i < $scope.crimeList.length(); i++) {
+                for (var i = 0; i < $scope.crimeList.length; i++) {
                     markers.push(createRandomMarker(i, $scope.crimeList[i].Latitude, $scope.crimeList[i].Longitude));
                 }
                 $scope.randomMarkers = markers;
