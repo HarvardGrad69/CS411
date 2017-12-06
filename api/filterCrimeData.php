@@ -13,7 +13,7 @@ if (mysqli_connect_errno()) {
 	$output = array();
 	$querySubTbl =
 		"SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'";
-	$resultSubTbl = mysqli_query($connect, "CALL doodle($keyword)");
+	$resultSubTbl = mysqli_query($connect, "CALL doodle('$keyword')");
   //$resultSubTbl = $mysqli->query("CALL gadf($keyword)");
   // $resultSubTbl = CALL doaa($keyword);
 	if(mysqli_num_rows($resultSubTbl)>0){
