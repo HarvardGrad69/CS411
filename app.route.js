@@ -181,14 +181,14 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
         });
     };
 
-		$scope.initstore = function(){
-        $http.get(
-            "api/neighborhoodsearch.php",
-        ).success(function(data){
-					alert("Doodoo successfully!");
-					$scope.initSearch();
-        });
-    };
+		// $scope.initstore = function(){
+    //     $http.get(
+    //         "api/neighborhoodsearch.php",
+    //     ).success(function(data){
+		// 			alert("Doodoo successfully!");
+		// 			$scope.initSearch();
+    //     });
+    // };
 
     $scope.search = function(){
         if($scope.keyword == null)
