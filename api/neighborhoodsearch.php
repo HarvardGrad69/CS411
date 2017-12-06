@@ -15,7 +15,7 @@ if (mysqli_connect_errno()) {
   //$keyword = mysqli_real_escape_string($connect, $data->keyword);
   $data = json_decode(file_get_contents("php://input"));
   $keyword = mysqli_real_escape_string($connect, $data->keyword);
-  mysqli_query($connect, "CREATE PROCEDURE thrua() BEGIN SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword' END");
+  mysqli_query($connect, "CREATE PROCEDURE thrua() SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
   // $stmt = $connection->prepare("SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
   // $stmt->bind_param("sss", $keyword);
   //$stmt->execute();
