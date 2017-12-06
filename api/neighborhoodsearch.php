@@ -14,6 +14,10 @@ if (mysqli_connect_errno()) {
   //$data = json_decode(file_get_contents("php://input"));
   //$keyword = mysqli_real_escape_string($connect, $data->keyword);
   mysqli_query($connect, "CREATE PROCEDURE `gadf`(IN @keyword) SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood=@keyword");
+  if (!$check1_res) {
+    printf("Error: %s\n", mysqli_error($con));
+    exit();
+}
   // $stmt = $connection->prepare("SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
   // $stmt->bind_param("sss", $keyword);
   //$stmt->execute();
