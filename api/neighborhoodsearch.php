@@ -13,7 +13,7 @@ if (mysqli_connect_errno()) {
   //include 'filterCrimeData.php';
   //$data = json_decode(file_get_contents("php://input"));
   //$keyword = mysqli_real_escape_string($connect, $data->keyword);
-  mysqli_query($connect, "CREATE PROCEDURE doodoog() SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Bridgeport'");
+  mysqli_query($connect, "CREATE PROCEDURE `doodoog`() SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Bridgeport'");
   // $stmt = $connection->prepare("SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
   // $stmt->bind_param("sss", $keyword);
   //$stmt->execute();
