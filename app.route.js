@@ -242,5 +242,50 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
 });
 
 app.controller('mapCtrl', function($scope,$http, AuthService){
-    $scope.map = { center: { latitude: 41.8781, longitude: -87.6298 }, zoom: 8 };
+    //$scope.map = { center: { latitude: 41.8781, longitude: -87.6298 }, zoom: 8 };
+    $scope.map = {
+        center: {
+          latitude: 41.8781,
+          longitude: -87.6298
+        },
+        zoom: 12,
+      };
+    $scope.options = {
+        scrollwheel: false
+    };
+    $scope.randomMarkers = [];
+    var createRandomMarker = function(i, lat, long, idKey) {  
+        if (idKey == null) {
+            idKey = "id";
+        }
+
+        var latitude = lat;
+        var longitude = long;
+        var ret = {
+            latitude: latitude,
+            longitude: longitude,
+            title: 'm' + i
+        };
+        ret[idKey] = i;
+        return ret;
+    };
+    $scope.search = function(){
+        if($scope.keyword == null)
+            alert("Please input a field");
+        else{
+            $http.post(
+                "api/filterCrimeData.php",
+                {'keyword':$scope.keyword}
+            ).success(function(data){
+                $scope.crimeList = data;
+                console.log($scope.crimeList);
+               var markers = [];
+                
+                for (var i = 0; i < $scope.crimeList.length; i++) {
+                    markers.push(createRandomMarker(i, $scope.crimeList[i].Latitude, $scope.crimeList[i].Longitude));
+                }
+                $scope.randomMarkers = markers;
+            });
+        }
+    };
 });
