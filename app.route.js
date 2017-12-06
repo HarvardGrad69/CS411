@@ -184,7 +184,6 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
 		$scope.initstore = function(){
         $http.get(
             "api/neighborhoodsearch.php",
-						{'keyword':$scope.keyword}
         ).success(function(data){
 					alert("Doodoo successfully!");
 					$scope.initSearch();
