@@ -181,6 +181,16 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
         });
     };
 
+		$scope.initstore = function(){
+        $http.get(
+            "api/neighborhoodsearch.php",
+						{'keyword':$scope.keyword}
+        ).success(function(data){
+					alert("Doodoo successfully!");
+					$scope.initSearch();
+        });
+    };
+
     $scope.search = function(){
         if($scope.keyword == null)
             alert("Please input a field");
@@ -254,7 +264,7 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
         scrollwheel: false
     };
     $scope.randomMarkers = [];
-    var createRandomMarker = function(i, lat, long, idKey) {  
+    var createRandomMarker = function(i, lat, long, idKey) {
         if (idKey == null) {
             idKey = "id";
         }
@@ -280,7 +290,7 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
                 $scope.crimeList = data;
                 console.log($scope.crimeList);
                var markers = [];
-                
+
                 for (var i = 0; i < $scope.crimeList.length; i++) {
                     markers.push(createRandomMarker(i, $scope.crimeList[i].Latitude, $scope.crimeList[i].Longitude));
                 }
