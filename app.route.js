@@ -317,6 +317,15 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
     var year=[]
     var crimeNumber=[]
     var neighborhood
+    $scope.chartConfig = {
+        options: {
+            chart: {
+                type: 'column',
+            },
+        },
+        series: null
+    }; 
+    
     $scope.search = function(){
         if($scope.keyword == null)
             alert("Please input a field");
@@ -326,29 +335,21 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
                 "api/generateGraph.php",
                 {'keyword':$scope.keyword}
             ).success(function(data){
+                $scope.crimeList = data;
+                console.log(data);
                 for(var index = 0; index<data.length; index++){
-                    const element = data[index]
                     year.push(data[index].Year)
                     var arr = []
-                    arr.push(data[index].Crime_Number)
+                    arr.push(parseInt(data[index].Crime_Count))
                     console.log(arr)
                     crimeNumber.push({name: "shitshow", data:arr})
                 }
-                $scope.crimeList = data;
-                console.log($scope.crimeList);
-		        $scope.chartConfig.series = crimeNumber;
+		console.log(crimeNumber);
+		$scope.chartConfig.series = crimeNumber;
             });
         }
     };
 
-    $scope.chartConfig = {
-        options: {
-            chart: {
-                type: 'column',
-            },
-        },
-        series: null
-    }; 
 
 
 
