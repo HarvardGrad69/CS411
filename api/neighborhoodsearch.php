@@ -19,19 +19,19 @@ if (mysqli_connect_errno()) {
                                 WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='doofus'");
   $res = mysqli_query($connect, "CREATE VIEW poopoo AS SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Bridgeport'");
   echo $res;
-  if (!$rawr) {
-    printf("Error: %s\n", mysqli_error($connect));
-    exit();
-}
+  // if (!$rawr) {
+  //   printf("Error: %s\n", mysqli_error($connect));
+  //   exit();
+  // }
   // $stmt = $connection->prepare("SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
   // $stmt->bind_param("sss", $keyword);
   //$stmt->execute();
   // $res = mysqli_query($connect,"call omgdude()");
   //
-  // while ($row = mysqli_fetch_array($res)){
-  //   $output[] = $row;
-  // }
-  // echo json_encode($output);
+  while ($row = mysqli_fetch_array($res)){
+    $output[] = $row;
+  }
+  echo json_encode($output);
 
 
 ?>
