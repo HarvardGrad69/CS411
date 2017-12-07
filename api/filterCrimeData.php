@@ -12,10 +12,8 @@ if (mysqli_connect_errno()) {
     $keyword = mysqli_real_escape_string($connect, $data->keyword);
 	$output = array();
 	$querySubTbl =
-		"SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'";
-	$resultSubTbl = mysqli_query($connect, "CALL doog($keyword)");
-  //$resultSubTbl = $mysqli->query("CALL gadf($keyword)");
-  // $resultSubTbl = CALL doaa($keyword);
+		"SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood, Year, Latitude, Longitude FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'";
+  $resultSubTbl = mysqli_query($connect, $querySubTbl);
 	if(mysqli_num_rows($resultSubTbl)>0){
 		while($row = mysqli_fetch_array($resultSubTbl))
 		{

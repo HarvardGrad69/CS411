@@ -164,7 +164,7 @@ app.controller('loginCtrl', function($scope,$location,$http,$localStorage, AuthS
 				AuthService.admin = data[0].admin;
                 console.log(AuthService);
 				$scope.$storage = $localStorage.$default({user:AuthService});
-				$location.path('/search');
+				$location.path('/map');
             }
 
         });
@@ -181,21 +181,12 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
         });
     };
 
-		// $scope.initstore = function(){
-    //     $http.get(
-    //         "api/neighborhoodsearch.php",
-    //     ).success(function(data){
-		// 			alert("Doodoo successfully!");
-		// 			$scope.initSearch();
-    //     });
-    // };
-
     $scope.search = function(){
         if($scope.keyword == null)
             alert("Please input a field");
         else{
             $http.post(
-                "api/filterCrimeData.php",
+                "api/neighborhoodsearch.php",
                 {'keyword':$scope.keyword}
             ).success(function(data){
                 $scope.crimeList = data;
@@ -263,17 +254,33 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
         scrollwheel: false
     };
     $scope.randomMarkers = [];
-    var createRandomMarker = function(i, lat, long, idKey) {
+    var createRandomMarker = function(i, lat, long, year, idKey) {
         if (idKey == null) {
             idKey = "id";
         }
 
         var latitude = lat;
         var longitude = long;
+	console.log(year);
+	if(year == 2012){
+	    var ic = 'static/yellow_MarkerC.png'
+	}
+	else if(year == 2013){
+	    var ic = 'static/purple_MarkerC.png'
+	}
+        else if(year == 2014){
+            var ic = 'static/orange_MarkerC.png'
+        }
+        else if(year == 2015){
+            var ic = 'static/blue_MarkerC.png'
+        }
+        else
+            var ic = 'static/red_MarkerC.png'
         var ret = {
             latitude: latitude,
             longitude: longitude,
-            title: 'm' + i
+            title: 'm' + i,
+            icon: ic
         };
         ret[idKey] = i;
         return ret;
@@ -291,9 +298,10 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
                var markers = [];
 
                 for (var i = 0; i < $scope.crimeList.length; i++) {
-                    markers.push(createRandomMarker(i, $scope.crimeList[i].Latitude, $scope.crimeList[i].Longitude));
+                    markers.push(createRandomMarker(i, $scope.crimeList[i].Latitude, $scope.crimeList[i].Longitude, $scope.crimeList[i].Year));
                 }
                 $scope.randomMarkers = markers;
+                console.log($scope.randomMarkers.length)
             });
         }
     };
