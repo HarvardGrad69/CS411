@@ -329,14 +329,26 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
                 for(var index = 0; index<data.length; index++){
                     const element = data[index]
                     year.push(data[index].Year)
-                    crimeNumber.push(data[index].Crime_Number)
+                    var arr = []
+                    arr.push(data[index].Crime_Number)
+                    console.log(arr)
+                    crimeNumber.push({name: "shitshow", data:arr})
                 }
                 $scope.crimeList = data;
                 console.log($scope.crimeList);
-		$scope.chartConfig.series.data = crimeNumber;
+		        $scope.chartConfig.series = crimeNumber;
             });
         }
     };
+
+    $scope.chartConfig = {
+        options: {
+            chart: {
+                type: 'column',
+            },
+        },
+        series: null
+    }; 
 
 
 
