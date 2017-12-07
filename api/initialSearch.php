@@ -7,6 +7,16 @@ if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
+  mysqli_query($connect, "DROP TRIGGER trig");
+  mysqli_query($connect, "CREATE TRIGGER trig
+BEFORE INSERT ON crime FOR EACH ROW
+BEGIN
+  IF new.Arrest > '1' THEN
+     INSERT INTO crime(ID, Arrest, Description, DateID, LocationID)
+     VALUES(new.ID, 0, new.Description, new.DateID, new.LocationID)
+  END IF;
+END");
+//mysqli_query($connect, "DROP TRIGGER trig");
   //mysqli_query($connect, "ALTER TABLE crime ADD CONTRAINT CHECK (Arrest<=1)");
 	$output = array();
 	$querySubTbl =

@@ -186,7 +186,7 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
             alert("Please input a field");
         else{
             $http.post(
-                "api/neighbourhoodsearch.php",
+                "api/neighborhoodsearch.php",
                 {'keyword':$scope.keyword}
             ).success(function(data){
                 $scope.crimeList = data;
