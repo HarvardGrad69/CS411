@@ -13,17 +13,17 @@ BEFORE INSERT ON crime FOR EACH ROW
 BEGIN
   IF new.Arrest > '1' THEN
       SET new.Arrest = '0';
-     -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID)
-     -- VALUES(new.ID, new.Arrest, new.Description, new.DateID, new.LocationID)
   END IF;
 END");
+mysqli_query($connect, "ALTER TABLE crime DROP CONSTRAINT CHK_crime");
+mysqli_query($connect, "ALTER TABLE crime ADD CONSTRAINT CHK_crime CHECK (description!='')");
 mysqli_query($connect, "DROP PROCEDURE searchy");
-mysqli_query($connect, "      CREATE PROCEDURE searchy @param1 VARCHAR(45) AS
-                              BEGIN
-                              SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood
-                              FROM crime, location, date
-                              WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood=@param1
-                              END;");
+mysqli_query($connect, "CREATE PROCEDURE searchy @param1 VARCHAR(45) AS
+                        BEGIN
+                        SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood
+                        FROM crime, location, date
+                        WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood=@param1
+                        END;");
 	$output = array();
 	$querySubTbl =
 		"SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID LIMIT 50";
