@@ -13,8 +13,8 @@ AFTER INSERT ON crime FOR EACH ROW
 BEGIN
   IF new.Arrest > '1' THEN
     UPDATE crime
-    SET Arrest = 0;
-    WHERE Arrest > 1;
+    SET Arrest = '0';
+    WHERE Arrest > '1';
      -- INSERT INTO crime.Arrest
      -- VALUES ('0');
   END IF;
