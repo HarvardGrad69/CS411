@@ -28,7 +28,7 @@ mysqli_query($connect, "CREATE PROCEDURE searchy @param1 VARCHAR(45) AS
                         END;");
 	$output = array();
 	$querySubTbl =
-		"SELECT crime.ID, Arrest, crime.Description, crime.ID, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID LIMIT 50";
+		"SELECT crime.ID, Arrest, crime.Description, DateTime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID LIMIT 50";
 	$resultSubTbl = mysqli_query($connect, $querySubTbl);
 	if(mysqli_num_rows($resultSubTbl)>0){
 		while($row = mysqli_fetch_array($resultSubTbl))
