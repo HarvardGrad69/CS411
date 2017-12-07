@@ -13,7 +13,7 @@ if (mysqli_connect_errno()) {
   //include 'filterCrimeData.php';
   $data = json_decode(file_get_contents("php://input"));
   $keyword = mysqli_real_escape_string($connect, $data->keyword);
-  mysqli_query($connect, "CREATE PROCEDURE toofo(IN $keyword)
+  $res = mysqli_query($connect, "
                                 SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood
                                 FROM crime, location, date
                                 WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
@@ -27,7 +27,7 @@ if (mysqli_connect_errno()) {
   // $stmt = $connection->prepare("SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
   // $stmt->bind_param("sss", $keyword);
   //$stmt->execute();
-  $res = mysqli_query($connect,"call toofo()");
+  //$res = mysqli_query($connect,"call toofo()");
   //
   if(mysqli_num_rows($res)>0){
 		while($row = mysqli_fetch_array($res))
