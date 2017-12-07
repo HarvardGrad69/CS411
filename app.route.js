@@ -351,7 +351,7 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
                     var arr = []
                     arr.push(parseInt(data[index].Crime_Count))
                     console.log(arr)
-                    crimeNumber.push({name: "shitshow", data:arr})
+                    crimeNumber.push({name: $scope.keyword + " " + data[index].Year, data:arr})
                 }
 		        console.log(crimeNumber);
 		        $scope.chartConfig.series = crimeNumber;
