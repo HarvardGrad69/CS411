@@ -7,7 +7,7 @@ if (mysqli_connect_errno()) {
     printf("Connect failed: %s\n", mysqli_connect_error());
     exit();
 }
-  mysqli_query($connect, "DROP TRIGGER IF EXISTS trig"; "CREATE TRIGGER trig
+  mysqli_query($connect, "DROP TRIGGER IF EXISTS trig" "CREATE TRIGGER trig
 AFTER INSERT INTO ON crime FOR EACH ROW
 BEGIN
   IF new.arrest > 1 THEN
