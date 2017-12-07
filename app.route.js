@@ -312,3 +312,19 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
         }
     };
 });
+
+app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, AuthService){
+    $scope.search = function(){
+        if($scope.keyword == null)
+            alert("Please input a field");
+        else{
+            $http.post(
+                "api/generateGraph.php",
+                {'keyword':$scope.keyword}
+            ).success(function(data){
+                $scope.crimeList = data;
+                console.log($scope.crimeList);
+            });
+        }
+    };
+});
