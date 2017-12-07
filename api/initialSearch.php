@@ -12,7 +12,7 @@ if (mysqli_connect_errno()) {
 BEFORE INSERT ON crime FOR EACH ROW
 BEGIN
   IF new.Arrest > '1' THEN
-      SET @Arrest = 0;
+      SET new.Arrest = '0';
      -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID)
      -- VALUES(new.ID, new.Arrest, new.Description, new.DateID, new.LocationID)
   END IF;
