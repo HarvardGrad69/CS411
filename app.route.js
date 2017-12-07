@@ -336,7 +336,13 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
                 }
                 $scope.crimeList = data;
                 console.log($scope.crimeList);
-		        $scope.chartConfig.series = crimeNumber;
+                $scope.chartConfig.series = crimeNumber;
+                var data = [
+                    { name: "first", data: [10] },
+                    { name: "second", data: [3] },
+                    { name: "third", data: [13] },
+                ];
+                $scope.chartConfig.series = data;
             });
         }
     };
