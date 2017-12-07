@@ -346,6 +346,12 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
                 }
 		console.log(crimeNumber);
 		$scope.chartConfig.series = crimeNumber;
+                var data = [
+                    { name: "first", data: [10] },
+                    { name: "second", data: [3] },
+                    { name: "third", data: [13] },
+                ];
+                $scope.chartConfig.series = data;
             });
         }
     };
