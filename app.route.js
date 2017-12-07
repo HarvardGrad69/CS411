@@ -25,7 +25,13 @@ app.config(function($routeProvider){
 			templateUrl:"partials/map.html",
 			controller:"mapCtrl"
 		}
-	     )
+         )
+    .when("/statistics",
+        {
+            templateUrl:"partials/statistics.html",
+            controller:"statisticsCtrl"
+        }
+         )
 	.otherwise(
 		{
 			redirectTo:"/home"
