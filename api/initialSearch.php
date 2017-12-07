@@ -12,7 +12,7 @@ if (mysqli_connect_errno()) {
 AFTER INSERT ON crime FOR EACH ROW
 BEGIN
   IF new.Arrest > '1' THEN
-     INSERT INTO Arrest
+     INSERT INTO new.Arrest
      VALUES ('0');
   END IF;
 END");
