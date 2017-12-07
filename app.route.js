@@ -324,17 +324,7 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
             },
         },
         series: null
-    }; 
-
-    $scope.updateChart = function(){
-        var data = [
-                { name: "first", data: [10] },
-                { name: "second", data: [3] },
-                { name: "third", data: [13] },
-            ];
-        $scope.chartConfig.series = data;
-    };
-    
+    };     
     $scope.search = function(){
         if($scope.keyword == null)
             alert("Please input a field");
@@ -351,7 +341,7 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
                     var arr = []
                     arr.push(parseInt(data[index].Crime_Count))
                     console.log(arr)
-                    crimeNumber.push({name: "shitshow", data:arr})
+                    crimeNumber.push({name: $scope.keyword + " " + data[index].Year, data:arr})
                 }
 		        console.log(crimeNumber);
 		        $scope.chartConfig.series = crimeNumber;
