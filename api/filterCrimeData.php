@@ -12,7 +12,7 @@ if (mysqli_connect_errno()) {
     $keyword = mysqli_real_escape_string($connect, $data->keyword);
 	$output = array();
 	$querySubTbl =
-		"SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'";
+		"SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood, Year FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'";
   //mysqli_query($connect, "CREATE VIEW looloo AS SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
   $resultSubTbl = mysqli_query($connect, $querySubTbl);
   //$resultSubTbl = $mysqli->query("CALL gadf($keyword)");
