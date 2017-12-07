@@ -19,7 +19,7 @@ if (mysqli_connect_errno()) {
   //                               WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='doofus'");
   //$doodoo = mysqli_query($connect, "CREATE VIEW poopoo AS SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Bridgeport'");
   //$res = mysqli_query($connect, "SELECT * FROM poopoo");
-  mysqli_query($connect, "ALTER TABLE crime ADD CONTRAINT CHECK (Arrest<=1)");
+  //mysqli_query($connect, "ALTER TABLE crime ADD CONTRAINT CHECK (Arrest<=1)");
   // if (!$rawr) {
   //   printf("Error: %s\n", mysqli_error($connect));
   //   exit();
