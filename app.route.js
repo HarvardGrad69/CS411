@@ -164,7 +164,7 @@ app.controller('loginCtrl', function($scope,$location,$http,$localStorage, AuthS
 				AuthService.admin = data[0].admin;
                 console.log(AuthService);
 				$scope.$storage = $localStorage.$default({user:AuthService});
-				$location.path('/search');
+				$location.path('/map');
             }
 
         });
@@ -254,17 +254,26 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
         scrollwheel: false
     };
     $scope.randomMarkers = [];
-    var createRandomMarker = function(i, lat, long, idKey) {
+    var createRandomMarker = function(i, lat, long, year, idKey) {
         if (idKey == null) {
             idKey = "id";
         }
 
         var latitude = lat;
         var longitude = long;
+        if(year == '2014'){
+            var ic = 'static/orange_MarkerC'
+        }
+        else if(year == '2015'){
+            var ic = 'static/blue_MarkerC'
+        }
+        else
+            var ic = 'static/red_MarkerC'
         var ret = {
             latitude: latitude,
             longitude: longitude,
-            title: 'm' + i
+            title: 'm' + i,
+            icon: ic
         };
         ret[idKey] = i;
         return ret;
@@ -282,7 +291,7 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
                var markers = [];
 
                 for (var i = 0; i < $scope.crimeList.length; i++) {
-                    markers.push(createRandomMarker(i, $scope.crimeList[i].Latitude, $scope.crimeList[i].Longitude));
+                    markers.push(createRandomMarker(i, $scope.crimeList[i].Latitude, $scope.crimeList[i].Longitude, $scope.crimeList[i].year));
                 }
                 $scope.randomMarkers = markers;
             });
