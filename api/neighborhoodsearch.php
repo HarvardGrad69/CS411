@@ -9,14 +9,14 @@ if (mysqli_connect_errno()) {
   // session_start();
   // $keyword = $_SESSION['keyword'];
   //echo $keyword;
-  //$output = array();
+  $output = array();
   //include 'filterCrimeData.php';
   //$data = json_decode(file_get_contents("php://input"));
   //$keyword = mysqli_real_escape_string($connect, $data->keyword);
-  $rawr = mysqli_query($connect, "CREATE PROCEDURE `doog`(IN doofus varchar(45))
-                                SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood
-                                FROM crime, location, date
-                                WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='doofus'");
+  // $rawr = mysqli_query($connect, "CREATE PROCEDURE `doog`(IN doofus varchar(45))
+  //                               SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood
+  //                               FROM crime, location, date
+  //                               WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='doofus'");
   $res = mysqli_query($connect, "CREATE VIEW poopoo AS SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Bridgeport'");
   echo $res;
   // if (!$rawr) {
