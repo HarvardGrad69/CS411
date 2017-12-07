@@ -17,8 +17,11 @@ BEGIN
      -- VALUES(new.ID, new.Arrest, new.Description, new.DateID, new.LocationID)
   END IF;
 END");
-//mysqli_query($connect, "DROP TRIGGER trig");
-  //mysqli_query($connect, "ALTER TABLE crime ADD CONTRAINT CHECK (Arrest<=1)");
+mysqli_query($connect, "DROP PROCEDURE searchy IF EXISTS");
+mysqli_query($connect, "      CREATE PROCEDURE searchy(IN param1 VARCHAR(45))
+                              SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood
+                              FROM crime, location, date
+                              WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
 	$output = array();
 	$querySubTbl =
 		"SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID LIMIT 50";
