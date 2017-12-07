@@ -261,14 +261,21 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
 
         var latitude = lat;
         var longitude = long;
-        if(year == '2014'){
-            var ic = 'static/orange_MarkerC'
+	console.log(year);
+	if(year == 2012){
+	    var ic = 'static/yellow_MarkerC.png'
+	}
+	else if(year == 2013){
+	    var ic = 'static/purple_MarkerC.png'
+	}
+        else if(year == 2014){
+            var ic = 'static/orange_MarkerC.png'
         }
-        else if(year == '2015'){
-            var ic = 'static/blue_MarkerC'
+        else if(year == 2015){
+            var ic = 'static/blue_MarkerC.png'
         }
         else
-            var ic = 'static/red_MarkerC'
+            var ic = 'static/red_MarkerC.png'
         var ret = {
             latitude: latitude,
             longitude: longitude,
@@ -291,7 +298,7 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
                var markers = [];
 
                 for (var i = 0; i < $scope.crimeList.length; i++) {
-                    markers.push(createRandomMarker(i, $scope.crimeList[i].Latitude, $scope.crimeList[i].Longitude, $scope.crimeList[i].year));
+                    markers.push(createRandomMarker(i, $scope.crimeList[i].Latitude, $scope.crimeList[i].Longitude, $scope.crimeList[i].Year));
                 }
                 $scope.randomMarkers = markers;
                 console.log($scope.randomMarkers.length)
