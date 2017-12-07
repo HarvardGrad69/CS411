@@ -181,21 +181,12 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
         });
     };
 
-		// $scope.initstore = function(){
-    //     $http.get(
-    //         "api/neighborhoodsearch.php",
-    //     ).success(function(data){
-		// 			alert("Doodoo successfully!");
-		// 			$scope.initSearch();
-    //     });
-    // };
-
     $scope.search = function(){
         if($scope.keyword == null)
             alert("Please input a field");
         else{
             $http.post(
-                "api/filterCrimeData.php",
+                "api/neighbourhoodsearch.php",
                 {'keyword':$scope.keyword}
             ).success(function(data){
                 $scope.crimeList = data;
