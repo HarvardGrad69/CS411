@@ -12,8 +12,9 @@ if (mysqli_connect_errno()) {
 BEFORE INSERT ON crime FOR EACH ROW
 BEGIN
   IF new.Arrest > '1' THEN
+     new.Arrest = 0
      INSERT INTO crime(ID, Arrest, Description, DateID, LocationID)
-     VALUES(new.ID, 0, new.Description, new.DateID, new.LocationID)
+     VALUES(new.ID, new.Arrest, new.Description, new.DateID, new.LocationID)
   END IF;
 END");
 //mysqli_query($connect, "DROP TRIGGER trig");
