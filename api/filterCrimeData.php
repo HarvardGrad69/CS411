@@ -13,7 +13,8 @@ if (mysqli_connect_errno()) {
 	$output = array();
 	$querySubTbl =
 		"SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'";
-	$resultSubTbl = mysqli_query($connect, "CALL doog($keyword)");
+  mysqli_query($connect, "CREATE VIEW poopoo AS SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
+  $resultSubTbl = mysqli_query($connect, "SELECT * FROM poopoo");
   //$resultSubTbl = $mysqli->query("CALL gadf($keyword)");
   // $resultSubTbl = CALL doaa($keyword);
 	if(mysqli_num_rows($resultSubTbl)>0){
