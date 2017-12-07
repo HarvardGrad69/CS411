@@ -294,6 +294,7 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
                     markers.push(createRandomMarker(i, $scope.crimeList[i].Latitude, $scope.crimeList[i].Longitude, $scope.crimeList[i].year));
                 }
                 $scope.randomMarkers = markers;
+                console.log($scope.randomMarkers.length)
             });
         }
     };
