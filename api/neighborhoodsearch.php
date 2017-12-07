@@ -17,8 +17,8 @@ if (mysqli_connect_errno()) {
   //                               SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood
   //                               FROM crime, location, date
   //                               WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='doofus'");
-  $res = mysqli_query($connect, "CREATE VIEW poopoo AS SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Bridgeport'");
-  echo $res;
+  $doodoo = mysqli_query($connect, "CREATE VIEW poopoo AS SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='Bridgeport'");
+  $res = mysqli_query($connect, "SELECT * FROM poopoo");
   // if (!$rawr) {
   //   printf("Error: %s\n", mysqli_error($connect));
   //   exit();
