@@ -14,7 +14,7 @@ BEGIN
      INSERT INTO crime( Arrest )
      VALUES ( 0 );
   END IF;
-END";)
+END";);
   //mysqli_query($connect, "ALTER TABLE crime ADD CONTRAINT CHECK (Arrest<=1)");
 	$output = array();
 	$querySubTbl =
