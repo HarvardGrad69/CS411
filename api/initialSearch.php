@@ -18,7 +18,7 @@ BEGIN
   END IF;
 END");
 mysqli_query($connect, "DROP PROCEDURE searchy");
-mysqli_query($connect, "      CREATE PROCEDURE searchy(IN param1 VARCHAR(45))
+mysqli_query($connect, "      CREATE PROCEDURE searchy(IN @param1 VARCHAR(45))
                               BEGIN
                               SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood
                               FROM crime, location, date
