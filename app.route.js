@@ -326,67 +326,18 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
                 "api/generateGraph.php",
                 {'keyword':$scope.keyword}
             ).success(function(data){
-                for(var index = 0; index<data.length(); index++){
+                for(var index = 0; index<data.length; index++){
                     const element = data[index]
                     year.push(data[index].Year)
                     crimeNumber.push(data[index].Crime_Number)
                 }
                 $scope.crimeList = data;
                 console.log($scope.crimeList);
+		$scope.chartConfig.series.data = crimeNumber;
             });
         }
     };
 
-    $scope.chartConfig = {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: neighborhood +'Crime Numbers by Year'
-        },
-        xAxis: {
-            categories: year,
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Crimes',
-                align: 'high'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        tooltip: {
-            valueSuffix: ''
-        },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',
-            x: -40,
-            y: 80,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-            shadow: true
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Crime number',
-            data: crimeNumber
-        }]
-      }
+
+
 });

@@ -17,7 +17,7 @@ $querySubTbl =
     "SELECT Year, location.Neighbourhood, COUNT(*) as Crime_Count
       FROM crime, location, date 
       WHERE crime.LocationID = location.ID and crime.DateID = date.ID 
-      and location.Neighbourhood=$keyword GROUP BY Year;";
+      and location.Neighbourhood='$keyword' GROUP BY Year;";
 
 //+------+---------------+----------+
 //| Year | Neighbourhood | COUNT(*) |
