@@ -9,7 +9,7 @@ if (mysqli_connect_errno()) {
 }
   mysqli_query($connect, "DROP TRIGGER trig");
   mysqli_query($connect, "CREATE TRIGGER trig
-AFTER INSERT ON crime FOR EACH ROW
+BEFORE INSERT ON crime FOR EACH ROW
 BEGIN
   IF new.Arrest > '1' THEN
      INSERT INTO crime(ID, Arrest, Description, DateID, LocationID)
