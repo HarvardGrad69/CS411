@@ -15,7 +15,7 @@ if (mysqli_connect_errno()) {
 //      VALUES ( 0 );
 //   END IF;
 // END");
-mysqli_quert($connect, "DROP TRIGGER trig");
+mysqli_query($connect, "DROP TRIGGER trig");
   //mysqli_query($connect, "ALTER TABLE crime ADD CONTRAINT CHECK (Arrest<=1)");
 	$output = array();
 	$querySubTbl =
