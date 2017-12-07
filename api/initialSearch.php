@@ -10,7 +10,7 @@ if (mysqli_connect_errno()) {
   mysqli_query($connect, "CREATE TRIGGER trig
 AFTER INSERT ON crime FOR EACH ROW
 BEGIN
-  IF crime(Arrest) > 1 THEN
+  IF new.arrest > 1 THEN
      INSERT INTO crime(Arrest)
      VALUES ( 0 );
   END IF;
