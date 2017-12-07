@@ -16,7 +16,7 @@ BEGIN
   END IF;
 END");
 mysqli_query($connect, "ALTER TABLE crime DROP CONSTRAINT CHK_crime");
-mysqli_query($connect, "ALTER TABLE crime ADD CONSTRAINT CHK_crime CHECK (description!='')");
+mysqli_query($connect, "ALTER TABLE crime ADD CONSTRAINT CHK_crime CHECK (description NOT NULL)");
 mysqli_query($connect, "DROP PROCEDURE searchy");
 mysqli_query($connect, "CREATE PROCEDURE searchy @param1 VARCHAR(45) AS
                         BEGIN
