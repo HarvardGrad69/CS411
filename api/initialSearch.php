@@ -13,7 +13,7 @@ AFTER INSERT ON crime FOR EACH ROW
 BEGIN
   IF new.Arrest > '1' THEN
      INSERT INTO crime(Arrest)
-     VALUES ('0');
+     VALUES (0);
   END IF;
 END");
 //mysqli_query($connect, "DROP TRIGGER trig");
