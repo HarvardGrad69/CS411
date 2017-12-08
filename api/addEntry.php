@@ -11,12 +11,12 @@
 	{
 
 		$Arrest = $data->Arrest;
-		$Neighbourhood = mysqli_real_escape_string($connect, $data->Neighbourhood);
-		$Description = mysqli_real_escape_string($connect, $data->Description);
+		$Neighbourhood = $data->Neighbourhood;
+		$Description = $data->Description;
 		$ID = mt_rand(1,20000);
 
 		//Formatting our datetime
-		$date = mysqli_real_escape_string($connect, $data->Datetime);
+		$date = $data->Datetime;
 		$timestamp = strtotime($date);
     $Datetime = date('Y-m-d H:i:s', $timestamp);
 		$month = date("m", $timestamp);
