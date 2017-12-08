@@ -722,20 +722,20 @@ angular.module('highcharts-ng', [])
         chart = initialiseChart(scope, element, scope.config);
       }
       initChart();
-
-      scope.$watch('config.series', function (newSeries, oldSeries) {
-        //do nothing when called on registration
-        if (newSeries === oldSeries) return;
-        processSeries(chart, newSeries);
-        chart.redraw();
-      }, true);
-
+      
       scope.$watch('config.title', function (newTitle) {
         chart.setTitle(newTitle, true);
       }, true);
 
       scope.$watch('config.subtitle', function (newSubtitle) {
         chart.setTitle(true, newSubtitle);
+      }, true);
+	    
+      scope.$watch('config.series', function (newSeries, oldSeries) {
+        //This watch allows multiple series addition to the crime data graph.
+        if (newSeries === oldSeries) return;
+        processSeries(chart, newSeries);
+        chart.redraw();
       }, true);
 
       scope.$watch('config.loading', function (loading) {
@@ -769,7 +769,7 @@ angular.module('highcharts-ng', [])
         }, true);
       });
       scope.$watch('config.options', function (newOptions, oldOptions, scope) {
-        //do nothing when called on registration
+        //If we change any options of our crime data graph, init chart
         if (newOptions === oldOptions) return;
         initChart();
       }, true);
