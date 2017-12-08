@@ -32,10 +32,12 @@
     //                         INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(id, a, des, id, id);
     //                         END;");
 
+    $ze = 0;
+    $noo = NULL;
     $stmt = mysqli_prepare($connect, "BEGIN INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(?, ?, ?, ?, ?);
     INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(?, ?, ?, ?, ?);
     INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(?, ?, ?, ?, ?); END");
-    mysqli_stmt_bind_param($stmt, "sssssssssssssss", $ID, $Datetime, $year, $month, $day, $ID, '0', '0', $Neighbourhood, NULL, $ID, $Arrest, $Description, $ID, $ID);
+    mysqli_stmt_bind_param($stmt, "sssssssssssssss", $ID, $Datetime, $year, $month, $day, $ID, $ze, $ze, $Neighbourhood, $noo, $ID, $Arrest, $Description, $ID, $ID);
     mysqli_stmt_execute($stmt);
     //$qwerty = "call added($ID, $Datetime, $year, $month, $day, $Neighbourhood, $Arrest, $Description)";
     //$qwerty = "call added()";
