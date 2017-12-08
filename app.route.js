@@ -322,6 +322,9 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
             chart: {
                 type: 'column',
             },
+            title:{
+                text: 'Crime Numbers by Neighborhood'
+            }
         },
         series: null
     };     
