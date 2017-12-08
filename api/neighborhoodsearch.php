@@ -30,21 +30,21 @@ if (mysqli_connect_errno()) {
   if ($stmt = mysqli_prepare($connect, "SELECT crime.ID, Arrest, crime.Description, DateTime, Neighbourhood
   FROM crime, location, date
   WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood=?")) {
-  mysqli_stmt_bind_param($stmt, "s", $keyword);
-  mysqli_stmt_execute($stmt);
-  mysqli_stmt_store_result($stmt);
+  mysqli_bind_param($stmt, "s", $keyword);
+  mysqli_execute($stmt);
+  mysqli_store_result($stmt);
   //$res = mysqli_query($connect,"call searched($keyword)");
   //
   //echo $stmt;
   $count = mysqli_stmt_num_rows($stmt);
   if(mysqli_stmt_num_rows($stmt)>0) {
   //for(;$count>0;count--){
-		while($row = mysqli_stmt_get_result($stmt))
+		while($row = mysqli_get_result($stmt))
 		{
 			$output[] = $row;
 		}
     // Hi
-		echo json_encode($stmt);
+		echo json_encode($output);
 	}
   mysqli_stmt_close($stmt);
 }
