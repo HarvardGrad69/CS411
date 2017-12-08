@@ -23,7 +23,7 @@
 		$day = date("d", $timestamp);
 
     mysqli_query($connect, "DROP PROCEDURE IF EXISTS added");
-    mysqli_query($connect, "CREATE PROCEDURE `added`(IN id, dt, y, m, d, ne, a, des) AS BEGIN
+    mysqli_query($connect, "CREATE PROCEDURE `added`(IN id, dt, y, m, d, ne, a, des VARCHAR(45)) AS BEGIN
                             -- INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
                             -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
                             -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
@@ -32,7 +32,8 @@
                             INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(id, a, des, id, id);
                             END;");
 
-    $query3 = mysqli_query($connect, "call added($ID, $Datetime, $year, $month, $day, $Neighbourhood, $Arrest, $Description)");
+    $qwerty = "call added($ID, $Datetime, $year, $month, $day, $Neighbourhood, $Arrest, $Description)";
+    $query3 = mysqli_query($connect, $qwerty);
     echo $query3;
 		// $query = "INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day'); ";
 		// mysqli_query($connect, $query);
