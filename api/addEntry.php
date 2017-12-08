@@ -40,7 +40,7 @@
     $db   = 'crimedata';
     $user = 'root';
     $pass = 'password123';
-    $charset = 'utf8mb4';
+    $charset = 'utf8';
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
     $opt = [
