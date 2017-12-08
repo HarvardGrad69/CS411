@@ -13,8 +13,8 @@
                           INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(@id, 0, 0, @ne, NULL);
                           INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(@id, @a, @des, @id, @id);
                           END;");
-  $tooth = 2;
-  echo $tooth;
+  $qwerty = "call added(@id='$ID', @dt='$Datetime', @y='$year', @m='$month', @d='$day', @ne='$Neighbourhood', @a='$Arrest', @des='$Description')";
+  $query3 = mysqli_query($connect, $qwerty);
 	$data = json_decode(file_get_contents("php://input"));
 	if(count($data) > 0)
 	{
