@@ -63,6 +63,112 @@ app.factory('AuthService', function(){
     return user;
 });
 
+app.factory('NeighborhoodArray', function(){
+    // var neighborhood = { neigh: ["Armour Square", "Bridgeport", "Hyde Park"]}
+    var neighborhood = {neigh: [
+        "Sauganash",
+        "Albany Park",
+        "Andersonville",
+        "Archer Heights",
+        "Armour Square",
+        "Ashburn",
+        "Auburn Gresham",
+        "Austin",
+        "Avalon Park",
+        "Avondale",
+        "Belmont Cragin",
+        "Beverly",
+        "Boystown",
+        "Bridgeport",
+        "Brighton Park",
+        "Bucktown",
+        "Burnside",
+        "Calumet Heights",
+        "Chatham",
+        "Chicago Lawn",
+        "Chinatown",
+        "Clearing",
+        "Douglas",
+        "Dunning",
+        "East Side",
+        "East Village",
+        "Edgewater",
+        "Edison Park",
+        "Englewood",
+        "Example",
+        "Fuller Park",
+        "Gage Park",
+        "Galewood",
+        "Garfield Park",
+        "Garfield Ridge",
+        "Glenview",
+        "Gold Coast",
+        "Grand Boulevard",
+        "Grand Crossing",
+        "Grant Park",
+        "Greektown",
+        "Hegewisch",
+        "Hermosa",
+        "Humboldt Park",
+        "Hyde Park",
+        "Irving Park",
+        "Jackson Park",
+        "Jefferson Park",
+        "Kenwood",
+        "Lake View",
+        "Lincoln Park",
+        "Lincoln Square",
+        "Little Village",
+        "Logan Square",
+        "Loop",
+        "Lower West Side",
+        "Magnificent Mile",
+        "Mckinley Park",
+        "Millenium Park",
+        "Montclare",
+        "Morgan Park",
+        "Mount Greenwood",
+        "Museum Campus",
+        "Near South Side",
+        "New City",
+        "None",
+        "North Center",
+        "North Lawndale",
+        "North Park",
+        "Norwood Park",
+        "O'Hare",
+        "Oakland",
+        "Old Town",
+        "Portage Park",
+        "Printers Row",
+        "Pullman",
+        "River North",
+        "Riverdale",
+        "Rogers Park",
+        "Roseland",
+        "Rush & Division",
+        "Sheffield & DePaul",
+        "South Chicago",
+        "South Deering",
+        "South Shore",
+        "Streeterville",
+        "Ukrainian Village",
+        "United Center",
+        "Uptown",
+        "Washington Heights",
+        "Washington Park",
+        "West Elsdon",
+        "West Lawn",
+        "West Loop",
+        "West Pullman",
+        "West Ridge",
+        "West Town",
+        "Wicker Park",
+        "Woodlawn",
+    ]}
+    return neighborhood;
+});
+
 app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $location, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
@@ -73,69 +179,6 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
     });
 }]);
 
-app.directive('myMap', function() {
-    // directive link function
-    var link = function(scope, element, attrs) {
-        var map, infoWindow;
-        var markers = [];
-
-        // map config
-        var mapOptions = {
-            center: new google.maps.LatLng(50, 2),
-            zoom: 4,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            scrollwheel: false
-        };
-
-        // init the map
-        function initMap() {
-            if (map === void 0) {
-                map = new google.maps.Map(element[0], mapOptions);
-            }
-        }
-
-        // place a marker
-        function setMarker(map, position, title, content) {
-            var marker;
-            var markerOptions = {
-                position: position,
-                map: map,
-                title: title,
-                icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
-            };
-
-            marker = new google.maps.Marker(markerOptions);
-            markers.push(marker); // add marker to array
-
-            google.maps.event.addListener(marker, 'click', function () {
-                // close window if not undefined
-                if (infoWindow !== void 0) {
-                    infoWindow.close();
-                }
-                // create new window
-                var infoWindowOptions = {
-                    content: content
-                };
-                infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-                infoWindow.open(map, marker);
-            });
-        }
-
-        // show the map and place some markers
-        initMap();
-
-        setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
-        setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
-        setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Text here');
-    };
-
-    return {
-        restrict: 'A',
-        template: '<div id="gmaps"></div>',
-        replace: true,
-        link: link
-    };
-});
 
 app.controller('homeCtrl',function($scope,$location){
 	$scope.gotoLogin = function () {
@@ -240,7 +283,7 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
                 {'Arrest':$scope.newCrime.Arrest, 'Description':$scope.newCrime.Description,'Datetime':$scope.newCrime.Datetime, 'Neighbourhood':$scope.newCrime.Neighbourhood}
             ).success(function(data){
                 console.log(data);
-                alert("Added successfully!");
+                alert(data);
                 $scope.initSearch();
             })
         }
@@ -313,10 +356,11 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
     };
 });
 
-app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, AuthService){
+app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, NeighborhoodArray){
     var year=[]
     var crimeNumber=[]
     var neighborhood
+    $scope.neighborhoods = NeighborhoodArray.neigh
     $scope.chartConfig = {
         options: {
             chart: {
@@ -335,7 +379,7 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
             }
         },
         series: null
-    };     
+    };
     $scope.search = function(){
         if($scope.keyword == null)
             alert("Please input a field");
@@ -365,8 +409,115 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
 
 });
 
+app.controller('listCtrl', function ($scope) {
+    $scope.neighborhood = [
+        { first: 'Little Italy'},
+        { first: 'Sauganash'},
+        {first: 'Sauganash'},
+        {first: 'Albany Park'},
+        {first: 'Andersonville'},
+        {first: 'Archer Heights'},
+        {first: 'Armour Square'},
+        {first: 'Ashburn'},
+        {first: 'Auburn Gresham'},
+        {first: 'Austin'},
+        {first: 'Avalon Park'},
+        {first: 'Avondale'},
+        {first: 'Belmont Cragin'},
+        {first: 'Beverly'},
+        {first: 'Boystown'},
+        {first: 'Bridgeport'},
+        {first: 'Brighton Park'},
+        {first: 'Bucktown'},
+        {first: 'Burnside'},
+        {first: 'Calumet Heights'},
+        {first: 'Chatham'},
+        {first: 'Chicago Lawn'},
+        {first: 'Chinatown'},
+        {first: 'Clearing'},
+        {first: 'Douglas'},
+        {first: 'Dunning'},
+        {first: 'East Side'},
+        {first: 'East Village'},
+        {first: 'Edgewater'},
+        {first: 'Edison Park'},
+        {first: 'Englewood'},
+        {first: 'Example'},
+        {first: 'Fuller Park'},
+        {first: 'Gage Park'},
+        {first: 'Galewood'},
+        {first: 'Garfield Park'},
+        {first: 'Garfield Ridge'},
+        {first: 'Glenview'},
+        {first: 'Gold Coast'},
+        {first: 'Grand Boulevard'},
+        {first: 'Grand Crossing'},
+        {first: 'Grant Park'},
+        {first: 'Greektown'},
+        {first: 'Hegewisch'},
+        {first: 'Hermosa'},
+        {first: 'Humboldt Park'},
+        {first: 'Hyde Park'},
+        {first: 'Irving Park'},
+        {first: 'Jackson Park'},
+        {first: 'Jefferson Park'},
+        {first: 'Kenwood'},
+        {first: 'Lake View'},
+        {first: 'Lincoln Park'},
+        {first: 'Lincoln Square'},
+        {first: 'Little Village'},
+        {first: 'Logan Square'},
+        {first: 'Loop'},
+        {first: 'Lower West Side'},
+        {first: 'Magnificent Mile'},
+        {first: 'Mckinley Park'},
+        {first: 'Millenium Park'},
+        {first: 'Montclare'},
+        {first: 'Morgan Park'},
+        {first: 'Mount Greenwood'},
+        {first: 'Museum Campus'},
+        {first: 'Near South Side'},
+        {first: 'New City'},
+        {first: 'None'},
+        {first: 'North Center'},
+        {first: 'North Lawndale'},
+        {first: 'North Park'},
+        {first: 'Norwood Park'},
+        {first: 'Oakland'},
+        {first: 'Old Town'},
+        {first: 'Portage Park'},
+        {first: 'Printers Row'},
+        {first: 'Pullman'},
+        {first: 'River North'},
+        {first: 'Riverdale'},
+        {first: 'Rogers Park'},
+        {first: 'Roseland'},
+        {first: 'Rush & Division'},
+        {first: 'Sheffield & DePaul'},
+        {first: 'South Chicago'},
+        {first: 'South Deering'},
+        {first: 'South Shore'},
+        {first: 'Streeterville'},
+        {first: 'Ukrainian Village'},
+        {first: 'United Center'},
+        {first: 'Uptown'},
+        {first: 'Washington Heights'},
+        {first: 'Washington Park'},
+        {first: 'West Elsdon'},
+        {first: 'West Lawn'},
+        {first: 'West Loop'},
+        {first: 'West Pullman'},
+        {first: 'West Ridge'},
+        {first: 'West Town'},
+        {first: 'Wicker Park'},
+        {first: 'Woodlawn'},
+
+
+    ];
+});
+
 // -------------------------------
-// highcharts-ng module 
+// highcharts-ng module
 // -------------------------------
 angular.module('highcharts-ng', [])
 .directive('highchart', function () {

@@ -27,24 +27,16 @@ if (mysqli_connect_errno()) {
   // $stmt = $connection->prepare("SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood='$keyword'");
   // $stmt->bind_param("sss", $keyword);
   //$stmt->execute();
-  if ($stmt = mysqli_prepare($connect, "SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood
+  if ($stmt = mysqli_prepare($connect, "SELECT crime.ID, Arrest, crime.Description, DateTime, Neighbourhood
   FROM crime, location, date
   WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood=?")) {
   mysqli_stmt_bind_param($stmt, "s", $keyword);
   mysqli_stmt_execute($stmt);
-  mysqli_stmt_fetch($stmt);
-  mysqli_stmt_bind_result($stmt, $res);
-  //$res = mysqli_query($connect,"call searched($keyword)");
-  //
-  if(mysqli_num_rows($res)>0){
-		while($row = mysqli_fetch_array($res))
-		{
-			$output[] = $row;
-		}
-    // Hi
-		echo json_encode($output);
-	}
-  mysqli_stmt_close($stmt);
+  $res = $stmt->get_result();
+  while($result=$res->fetch_assoc()) {
+    $output[] = $result;
+  }
+	echo json_encode($output);
 }
 
 
