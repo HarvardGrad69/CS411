@@ -64,7 +64,108 @@ app.factory('AuthService', function(){
 });
 
 app.factory('NeighborhoodArray', function(){
-    var neighborhood = { neigh: ["Armour Square", "Bridgeport", "Hyde Park"]}
+    // var neighborhood = { neigh: ["Armour Square", "Bridgeport", "Hyde Park"]}
+    var neighborhood = {neigh: [
+        "Sauganash",
+        "Albany Park",
+        "Andersonville",
+        "Archer Heights",
+        "Armour Square",
+        "Ashburn",
+        "Auburn Gresham",
+        "Austin",
+        "Avalon Park",
+        "Avondale",
+        "Belmont Cragin",
+        "Beverly",
+        "Boystown",
+        "Bridgeport",
+        "Brighton Park",
+        "Bucktown",
+        "Burnside",
+        "Calumet Heights",
+        "Chatham",
+        "Chicago Lawn",
+        "Chinatown",
+        "Clearing",
+        "Douglas",
+        "Dunning",
+        "East Side",
+        "East Village",
+        "Edgewater",
+        "Edison Park",
+        "Englewood",
+        "Example",
+        "Fuller Park",
+        "Gage Park",
+        "Galewood",
+        "Garfield Park",
+        "Garfield Ridge",
+        "Glenview",
+        "Gold Coast",
+        "Grand Boulevard",
+        "Grand Crossing",
+        "Grant Park",
+        "Greektown",
+        "Hegewisch",
+        "Hermosa",
+        "Humboldt Park",
+        "Hyde Park",
+        "Irving Park",
+        "Jackson Park",
+        "Jefferson Park",
+        "Kenwood",
+        "Lake View",
+        "Lincoln Park",
+        "Lincoln Square",
+        "Little Village",
+        "Logan Square",
+        "Loop",
+        "Lower West Side",
+        "Magnificent Mile",
+        "Mckinley Park",
+        "Millenium Park",
+        "Montclare",
+        "Morgan Park",
+        "Mount Greenwood",
+        "Museum Campus",
+        "Near South Side",
+        "New City",
+        "None",
+        "North Center",
+        "North Lawndale",
+        "North Park",
+        "Norwood Park",
+        "O'Hare",
+        "Oakland",
+        "Old Town",
+        "Portage Park",
+        "Printers Row",
+        "Pullman",
+        "River North",
+        "Riverdale",
+        "Rogers Park",
+        "Roseland",
+        "Rush & Division",
+        "Sheffield & DePaul",
+        "South Chicago",
+        "South Deering",
+        "South Shore",
+        "Streeterville",
+        "Ukrainian Village",
+        "United Center",
+        "Uptown",
+        "Washington Heights",
+        "Washington Park",
+        "West Elsdon",
+        "West Lawn",
+        "West Loop",
+        "West Pullman",
+        "West Ridge",
+        "West Town",
+        "Wicker Park",
+        "Woodlawn",
+    ]}
     return neighborhood;
 });
 
@@ -78,69 +179,6 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
     });
 }]);
 
-app.directive('myMap', function() {
-    // directive link function
-    var link = function(scope, element, attrs) {
-        var map, infoWindow;
-        var markers = [];
-
-        // map config
-        var mapOptions = {
-            center: new google.maps.LatLng(50, 2),
-            zoom: 4,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            scrollwheel: false
-        };
-
-        // init the map
-        function initMap() {
-            if (map === void 0) {
-                map = new google.maps.Map(element[0], mapOptions);
-            }
-        }
-
-        // place a marker
-        function setMarker(map, position, title, content) {
-            var marker;
-            var markerOptions = {
-                position: position,
-                map: map,
-                title: title,
-                icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
-            };
-
-            marker = new google.maps.Marker(markerOptions);
-            markers.push(marker); // add marker to array
-
-            google.maps.event.addListener(marker, 'click', function () {
-                // close window if not undefined
-                if (infoWindow !== void 0) {
-                    infoWindow.close();
-                }
-                // create new window
-                var infoWindowOptions = {
-                    content: content
-                };
-                infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-                infoWindow.open(map, marker);
-            });
-        }
-
-        // show the map and place some markers
-        initMap();
-
-        setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
-        setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
-        setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Text here');
-    };
-
-    return {
-        restrict: 'A',
-        template: '<div id="gmaps"></div>',
-        replace: true,
-        link: link
-    };
-});
 
 app.controller('homeCtrl',function($scope,$location){
 	$scope.gotoLogin = function () {
