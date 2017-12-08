@@ -372,12 +372,114 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
 
 app.controller('listCtrl', function ($scope) {
     $scope.people = [
-        { id: 1, first: 'John', last: 'Rambo', actor: 'Silvester' },
-        { id: 2, first: 'Rocky', last: 'Balboa', actor: 'Silvester' },
-        { id: 3, first: 'John', last: 'Kimble', actor: 'Arnold' },
-        { id: 4, first: 'Ben', last: 'Richards', actor: 'Arnold' }
+        { id: 1, first: 'Little Italy'},
+        { id: 2, first: 'Sauganash'},
+
     ];
 });
+
+//
+// | "Sauganash         |
+// | Albany Park        |
+// | Andersonville      |
+// | Archer Heights     |
+// | Armour Square      |
+// | Ashburn            |
+// | Auburn Gresham     |
+// | Austin             |
+// | Avalon Park        |
+// | Avondale           |
+// | Belmont Cragin     |
+// | Beverly            |
+// | Boystown           |
+// | Bridgeport         |
+// | Brighton Park      |
+// | Bucktown           |
+// | Burnside           |
+// | Calumet Heights    |
+// | Chatham            |
+// | Chicago Lawn       |
+// | Chinatown          |
+// | Clearing           |
+// | Douglas            |
+// | Dunning            |
+// | East Side          |
+// | East Village       |
+// | Edgewater          |
+// | Edison Park        |
+// | Englewood          |
+// | Example            |
+// | Fuller Park        |
+// | Gage Park          |
+// | Galewood           |
+// | Garfield Park      |
+// | Garfield Ridge     |
+// | Glenview           |
+// | Gold Coast         |
+// | Grand Boulevard    |
+// | Grand Crossing     |
+// | Grant Park         |
+// | Greektown          |
+// | Hegewisch          |
+// | Hermosa            |
+// | Humboldt Park      |
+// | Hyde Park          |
+// | Irving Park        |
+// | Jackson Park       |
+// | Jefferson Park     |
+// | Kenwood            |
+// | Lake View          |
+// | Lincoln Park       |
+// | Lincoln Square     |
+// | Little Village     |
+// | Logan Square       |
+// | Loop               |
+// | Lower West Side    |
+// | Magnificent Mile   |
+// | Mckinley Park      |
+// | Millenium Park     |
+// | Montclare          |
+// | Morgan Park        |
+// | Mount Greenwood    |
+// | Museum Campus      |
+// | Near South Side    |
+// | New City           |
+// | None               |
+// | North Center       |
+// | North Lawndale     |
+// | North Park         |
+// | Norwood Park       |
+// | O'Hare             |
+// | Oakland            |
+// | Old Town           |
+// | Portage Park       |
+// | Printers Row       |
+// | Pullman            |
+// | River North        |
+// | Riverdale          |
+// | Rogers Park        |
+// | Roseland           |
+// | Rush & Division    |
+// | Sheffield & DePaul |
+// | South Chicago      |
+// | South Deering      |
+// | South Shore        |
+// | Streeterville      |
+// | Ukrainian Village  |
+// | United Center      |
+// | Uptown             |
+// | Washington Heights |
+// | Washington Park    |
+// | West Elsdon        |
+// | West Lawn          |
+// | West Loop          |
+// | West Pullman       |
+// | West Ridge         |
+// | West Town          |
+// | Wicker Park        |
+// | Woodlawn           |
+// | Wrigleyville
+
 
 // -------------------------------
 // highcharts-ng module 
