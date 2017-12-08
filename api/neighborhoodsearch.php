@@ -36,8 +36,8 @@ if (mysqli_connect_errno()) {
   //$res = mysqli_query($connect,"call searched($keyword)");
   //
   //echo $stmt;
-  if(mysqli_num_rows($res)>0){
-		while($row = mysqli_fetch_array($res))
+  if(mysqli_num_rows($stmt)>0){
+		while($row = mysqli_fetch_array($stmt))
 		{
 			$output[] = $row;
 		}
