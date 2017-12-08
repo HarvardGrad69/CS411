@@ -372,8 +372,8 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
 
 app.controller('listCtrl', function ($scope) {
     $scope.people = [
-        { id: 1, first: 'Little Italy'},
-        { id: 2, first: 'Sauganash'},
+        { first: 'Little Italy'},
+        { first: 'Sauganash'},
 
     ];
 });
