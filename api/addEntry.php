@@ -24,15 +24,15 @@
 
     mysqli_query($connect, "DROP PROCEDURE IF EXISTS added");
     mysqli_query($connect, "CREATE PROCEDURE `added`(IN id, dt, y, m, d, ne, a, des) AS BEGIN
-                            INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
-                            INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
-                            INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
-                            -- INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES(id, dt, y, m, d;
-                            -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(id, 0, 0, ne, NULL;
-                            -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', id, id);
+                            -- INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
+                            -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
+                            -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
+                            INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES(id, dt, y, m, d);
+                            INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(id, 0, 0, ne, NULL);
+                            INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(id, a, des, id, id);
                             END;");
 
-    $query3 = mysqli_query($connect, "call added()");
+    $query3 = mysqli_query($connect, "call added($ID, $Datetime, $year, $month, $day, $Neighbourhood, $Arrest, $Description)");
     echo $query3;
 		// $query = "INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day'); ";
 		// mysqli_query($connect, $query);
