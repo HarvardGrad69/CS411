@@ -21,7 +21,7 @@
 		$month = date("m", $timestamp);
 		$year = date("y", $timestamp);
 		$day = date("d", $timestamp);
-    
+
 		$query = "INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day'); ";
 		mysqli_query($connect, $query);
 		$query2 = "INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL); ";
