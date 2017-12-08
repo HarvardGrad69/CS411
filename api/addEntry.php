@@ -40,7 +40,7 @@
   //   mysqli_stmt_bind_param($stmt, "sssssssssssssss", $ID, $Datetime, $year, $month, $day, $ID, $ze, $ze, $Neighbourhood, $noo, $ID, $Arrest, $Description, $ID, $ID);
   //   mysqli_stmt_execute($stmt);
   // }
-    $qwerty = "exec added(@id=$ID, @dt=$Datetime, @y=$year, @m=$month, @d=$day, @ne=$Neighbourhood, @a=$Arrest, @des=$Description)";
+    $qwerty = "call added(@id=$ID, @dt=$Datetime, @y=$year, @m=$month, @d=$day, @ne=$Neighbourhood, @a=$Arrest, @des=$Description)";
     //$qwerty = "call added()";
     $query3 = mysqli_query($connect, $qwerty);
     echo $query3;
