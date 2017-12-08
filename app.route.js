@@ -63,6 +63,11 @@ app.factory('AuthService', function(){
     return user;
 });
 
+app.factory('NeighborhoodArray', function(){
+    var neighborhood = { neigh: ["Armour Square", "Bridgeport", "Hyde Park"]}
+    return neighborhood;
+});
+
 app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $location, AuthService) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
@@ -363,6 +368,15 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
 
 
 
+});
+
+app.controller('listCtrl', function ($scope) {
+    $scope.people = [
+        { id: 1, first: 'John', last: 'Rambo', actor: 'Silvester' },
+        { id: 2, first: 'Rocky', last: 'Balboa', actor: 'Silvester' },
+        { id: 3, first: 'John', last: 'Kimble', actor: 'Arnold' },
+        { id: 4, first: 'Ben', last: 'Richards', actor: 'Arnold' }
+    ];
 });
 
 // -------------------------------
