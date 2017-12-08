@@ -17,15 +17,15 @@ BEGIN
 END");
 mysqli_query($connect, "DROP INDEX on_neigh");
 mysqli_query($connect, "CREATE INDEX on_neigh ON location(Neighbourhood)");
-mysqli_query($connect, "ALTER TABLE crime DROP CONSTRAINT CHK_crime");
-mysqli_query($connect, "ALTER TABLE crime WITH CHECK ADD CONSTRAINT CHK_crime CHECK((crime.Description<>N''))");
-mysqli_query($connect, "DROP PROCEDURE searched");
-mysqli_query($connect, "CREATE PROCEDURE `searched`() AS
-                        BEGIN
-                        SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood
-                        FROM crime, location, date
-                        WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood=?
-                        END;");
+// mysqli_query($connect, "ALTER TABLE crime DROP CONSTRAINT CHK_crime");
+// mysqli_query($connect, "ALTER TABLE crime WITH CHECK ADD CONSTRAINT CHK_crime CHECK((crime.Description<>N''))");
+// mysqli_query($connect, "DROP PROCEDURE searched");
+// mysqli_query($connect, "CREATE PROCEDURE `searched`() AS
+//                         BEGIN
+//                         SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood
+//                         FROM crime, location, date
+//                         WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood=?
+//                         END;");
 	$output = array();
 	$querySubTbl =
 		"SELECT crime.ID, Arrest, crime.Description, Datetime, Neighbourhood FROM crime, location, date WHERE crime.LocationID = location.ID and crime.DateID = date.ID LIMIT 50";

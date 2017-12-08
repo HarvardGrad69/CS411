@@ -33,24 +33,10 @@ if (mysqli_connect_errno()) {
   mysqli_stmt_bind_param($stmt, "s", $keyword);
   mysqli_stmt_execute($stmt);
   $res = $stmt->get_result();
-  //mysqli_store_result($stmt);
-  //$res = mysqli_query($connect,"call searched($keyword)");
-  //
-  //echo $stmt;
-  //$count = mysqli_stmt_num_rows($stmt);
-  //if((mysqli_num_rows($res)>0) {
-  //for(;$count>0;count--){
-		// while($row = mysqli_get_result($stmt))
-		// {
-		// 	$output[] = $row;
-		// }
-    // Hi
-    while($result=$res->fetch_assoc()) {
-      $output[] = $result;
-    }
-		echo json_encode($output);
-	//}
-  //mysqli_stmt_close($stmt);
+  while($result=$res->fetch_assoc()) {
+    $output[] = $result;
+  }
+	echo json_encode($output);
 }
 
 
