@@ -57,7 +57,7 @@
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   $dbh->beginTransaction();
-  $dbh->exec("INSERT INTO date(ID, Datetime, Year, Month, Day2) VALUES('$ID', '$Datetime', '$year', '$month', '$day')");
+  $dbh->exec("INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day')");
   $dbh->exec("INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL)");
   $dbh->exec("INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID')");
   $dbh->commit();
