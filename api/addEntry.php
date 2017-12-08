@@ -15,7 +15,7 @@
                           END;");
   $qwerty = "execute added @id='01', @dt=NULL, @y='1992', @m='09', @d='09', @ne='Austin', @a='1', @des='Nono' go";
   echo $qwerty;
-  $query3 = mysqli_query($connect, $qwerty)
+  $query3 = mysqli_query($connect, $qwerty);
   echo $query3;
 	$data = json_decode(file_get_contents("php://input"));
 	if(count($data) > 0)
