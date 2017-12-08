@@ -7,15 +7,16 @@
     	exit();
 	}
 
-  mysqli_query($connect, "DROP PROCEDURE added");
-  mysqli_query($connect, "CREATE PROCEDURE added @id INT(11), @dt datetime, @y INT(11), @m INT(11), @d INT(11), @ne VARCHAR(45), @a TINYINT(1), @des VARCHAR(45) AS BEGIN
-                          INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(@id, @dt, @y, @m, @d);
-                          
-                          END;");
-  $qwerty = "execute added @id='01', @dt=NULL, @y='1992', @m='09', @d='09', @ne='Austin', @a='1', @des='Nono' go";
-  echo $qwerty;
-  $query3 = mysqli_query($connect, $qwerty);
-  echo $query3;
+  // mysqli_query($connect, "DROP PROCEDURE added");
+  // mysqli_query($connect, "CREATE PROCEDURE added @id INT(11), @dt datetime, @y INT(11), @m INT(11), @d INT(11), @ne VARCHAR(45), @a TINYINT(1), @des VARCHAR(45) AS BEGIN
+  //                         INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(@id, @dt, @y, @m, @d);
+  //                         INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(@id, 0, 0, @ne, NULL);
+  //                         INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(@id, @a, @des, @id, @id);
+  //                         END;");
+  // $qwerty = "call added @id='01', @dt=NULL, @y='1992', @m='09', @d='09', @ne='Austin', @a='1', @des='Nono' go";
+  // echo $qwerty;
+  // $query3 = mysqli_query($connect, $qwerty);
+  // echo $query3;
 	$data = json_decode(file_get_contents("php://input"));
 	if(count($data) > 0)
 	{
@@ -32,7 +33,12 @@
 		$year = date("y", $timestamp);
 		$day = date("d", $timestamp);
 
-
+    mysqli_query($connect, "DROP PROCEDURE added");
+    mysqli_query($connect, "CREATE PROCEDURE added @id INT(11), @dt datetime, @y INT(11), @m INT(11), @d INT(11), @ne VARCHAR(45), @a TINYINT(1), @des VARCHAR(45) AS BEGIN
+                            INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(@id, @dt, @y, @m, @d);
+                            INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(@id, 0, 0, @ne, NULL);
+                            INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(@id, @a, @des, @id, @id);
+                            END;");
 
   //   $ze = 0;
   //   $noo = NULL;
@@ -42,7 +48,7 @@
   //   mysqli_stmt_bind_param($stmt, "sssssssssssssss", $ID, $Datetime, $year, $month, $day, $ID, $ze, $ze, $Neighbourhood, $noo, $ID, $Arrest, $Description, $ID, $ID);
   //   mysqli_stmt_execute($stmt);
   // }
-    $qwerty = "call added(@id='$ID', @dt='$Datetime', @y='$year', @m='$month', @d='$day', @ne='$Neighbourhood', @a='$Arrest', @des='$Description')";
+    $qwerty = "call added @id='$ID', @dt='$Datetime', @y='$year', @m='$month', @d='$day', @ne='$Neighbourhood', @a='$Arrest', @des='$Description'";
     //$qwerty = "call added()";
     $query3 = mysqli_query($connect, $qwerty);
     echo $query3;
