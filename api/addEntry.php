@@ -22,44 +22,44 @@
 		$year = date("y", $timestamp);
 		$day = date("d", $timestamp);
 
-    // mysqli_query($connect, "DROP PROCEDURE added");
-    // mysqli_query($connect, "CREATE PROCEDURE added(IN id VARCHAR(45), dt VARCHAR(45), y VARCHAR(45), m VARCHAR(45), d VARCHAR(45), ne VARCHAR(45), a VARCHAR(45), des VARCHAR(45)) AS BEGIN
-    //                         -- INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
-    //                         -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
-    //                         -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
-    //                         INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(id, dt, y, m, d);
-    //                         INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(id, 0, 0, ne, NULL);
-    //                         INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(id, a, des, id, id);
-    //                         END;");
+    mysqli_query($connect, "DROP PROCEDURE added");
+    mysqli_query($connect, "CREATE PROCEDURE added(IN id VARCHAR(45), dt VARCHAR(45), y VARCHAR(45), m VARCHAR(45), d VARCHAR(45), ne VARCHAR(45), a VARCHAR(45), des VARCHAR(45)) AS BEGIN
+                            -- INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
+                            -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
+                            -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
+                            INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(id, dt, y, m, d);
+                            INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(id, 0, 0, ne, NULL);
+                            INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(id, a, des, id, id);
+                            END;");
 
-    $ze = 0;
-    $noo = NULL;
-    if($stmt = mysqli_prepare($connect, "BEGIN INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(?, ?, ?, ?, ?);
-    INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(?, ?, ?, ?, ?);
-    INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(?, ?, ?, ?, ?); END")) {
-    mysqli_stmt_bind_param($stmt, "sssssssssssssss", $ID, $Datetime, $year, $month, $day, $ID, $ze, $ze, $Neighbourhood, $noo, $ID, $Arrest, $Description, $ID, $ID);
-    mysqli_stmt_execute($stmt);
-  }
-    //$qwerty = "call added($ID, $Datetime, $year, $month, $day, $Neighbourhood, $Arrest, $Description)";
+  //   $ze = 0;
+  //   $noo = NULL;
+  //   if($stmt = mysqli_prepare($connect, "BEGIN INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(?, ?, ?, ?, ?);
+  //   INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(?, ?, ?, ?, ?);
+  //   INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(?, ?, ?, ?, ?); END")) {
+  //   mysqli_stmt_bind_param($stmt, "sssssssssssssss", $ID, $Datetime, $year, $month, $day, $ID, $ze, $ze, $Neighbourhood, $noo, $ID, $Arrest, $Description, $ID, $ID);
+  //   mysqli_stmt_execute($stmt);
+  // }
+    $qwerty = "call added($ID, $Datetime, $year, $month, $day, $Neighbourhood, $Arrest, $Description)";
     //$qwerty = "call added()";
-    // $query3 = mysqli_query($connect, $qwerty);
-    // echo $query3;
+    $query3 = mysqli_query($connect, $qwerty);
+    echo $query3;
 		// $query = "INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day'); ";
 		// mysqli_query($connect, $query);
 		// $query2 = "INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL); ";
 		// mysqli_query($connect, $query2);
 		// $query3 = "INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');";
 
-		$res = array(
-			'ID' => $ID
-		);
-		if(mysqli_query($connect, $query3))
-		{
-			echo json_encode($res);
-		}
-		else
-		{
-		   echo json_encode($query3);
-		}
+		// $res = array(
+		// 	'ID' => $ID
+		// );
+		// if(mysqli_query($connect, $query3))
+		// {
+		// 	echo json_encode($res);
+		// }
+		// else
+		// {
+		//    echo json_encode($query3);
+		// }
  	}
  ?>
