@@ -320,7 +320,7 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
     $scope.chartConfig = {
         options: {
             chart: {
-                type: 'column',
+                type: 'bar',
             },
             title:{
                 text: 'Crime Numbers by Neighborhood'
