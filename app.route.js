@@ -715,7 +715,7 @@ angular.module('highcharts-ng', [])
       config: '='
     },
     link: function (scope, element, attrs) {
-
+	// Adding a couple scope.$watch that ensure updating crime information should change the whole chart.
       var chart = false;
       function initChart() {
         if (chart) chart.destroy();
@@ -727,8 +727,8 @@ angular.module('highcharts-ng', [])
         chart.setTitle(newTitle, true);
       }, true);
 
-      scope.$watch('config.subtitle', function (newSubtitle) {
-        chart.setTitle(true, newSubtitle);
+      scope.$watch('config.subtitle', function (newTitle) {
+        chart.setTitle(true, newTitle);
       }, true);
 	    
       scope.$watch('config.series', function (newSeries, oldSeries) {
@@ -763,7 +763,7 @@ angular.module('highcharts-ng', [])
           if (newAxes === oldAxes) return;
           if(newAxes) {
             chart[axisName][0].update(newAxes, false);
-            updateZoom(chart[axisName][0], angular.copy(newAxes));
+            updateZoom(chart[axisName][0], angular.copy(newAxes)); // This allows us to add new copies of data and zoom out
             chart.redraw();
           }
         }, true);
