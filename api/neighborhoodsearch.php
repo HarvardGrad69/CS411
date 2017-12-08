@@ -32,7 +32,7 @@ if (mysqli_connect_errno()) {
   WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood=?")) {
   mysqli_stmt_bind_param($stmt, "s", $keyword);
   mysqli_stmt_execute($stmt);
-  $res = $stmt->get_result();
+  $res = mysqli_stmt_get_result($stmt);
   //mysqli_store_result($stmt);
   //$res = mysqli_query($connect,"call searched($keyword)");
   //
