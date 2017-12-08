@@ -13,9 +13,8 @@
     <div ng-app="myapp">
         <fieldset ng-controller="listCtrl">
             <select
-                    ng-options="p.first + ' ' + p.last for p in people"
-                    ng-model="selectedPerson"></select>
-            {{ selectedPerson }}
+                    ng-options="p.first for p in people"
+                    ng-model="keyword"></select>
         </fieldset>
     </div>
 </div>
