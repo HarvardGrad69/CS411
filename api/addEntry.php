@@ -17,19 +17,23 @@
 		//Formatting our datetime
 		$date = mysqli_real_escape_string($connect, $data->Datetime);
 		$timestamp = strtotime($date);
-    	$Datetime = date('Y-m-d H:i:s', $timestamp);
+    $Datetime = date('Y-m-d H:i:s', $timestamp);
 		$month = date("m", $timestamp);
 		$year = date("y", $timestamp);
 		$day = date("d", $timestamp);
 
     mysqli_query($connect, "DROP PROCEDURE IF EXISTS added");
-    mysqli_query($connect, "CREATE PROCEDURE `added`() AS BEGIN
-                            INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day';
-                            INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL;
-                            INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID';
+    mysqli_query($connect, "CREATE PROCEDURE `added`(IN id, dt, y, m, d, ne, a, des VARCHAR(45)) AS BEGIN
+                            -- INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
+                            -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
+                            -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
+                            INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(id, dt, y, m, d);
+                            INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(id, 0, 0, ne, NULL);
+                            INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(id, a, des, id, id);
                             END;");
 
-    $query3 = mysqli_query($connect, "call added()");
+    $qwerty = "call added($ID, $Datetime, $year, $month, $day, $Neighbourhood, $Arrest, $Description)";
+    $query3 = mysqli_query($connect, $qwerty);
     echo $query3;
 		// $query = "INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day'); ";
 		// mysqli_query($connect, $query);
@@ -40,13 +44,13 @@
 		$res = array(
 			'ID' => $ID
 		);
-		if(mysqli_query($connect, $query3))
+		if(mysqli_query($connect, $qwerty))
 		{
 			echo json_encode($res);
 		}
 		else
 		{
-		   echo json_encode($query3);
+		   echo json_encode($qwerty);
 		}
  	}
  ?>
