@@ -36,13 +36,15 @@ if (mysqli_connect_errno()) {
   //$res = mysqli_query($connect,"call searched($keyword)");
   //
   //echo $stmt;
-  if(mysqli_stmt_num_rows($stmt)>0){
+  $count = mysqli_stmt_num_rows($stmt);
+  if(mysqli_stmt_num_rows($stmt)>0) {
+  //for(;$count>0;count--){
 		while($row = mysqli_stmt_get_result($stmt))
 		{
 			$output[] = $row;
 		}
     // Hi
-		echo json_encode($output);
+		echo json_encode($stmt);
 	}
   mysqli_stmt_close($stmt);
 }
