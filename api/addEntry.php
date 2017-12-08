@@ -7,7 +7,7 @@
     	exit();
 	}
 
-  mysqli_query($connect, "DROP PROCEDURE added");
+  //mysqli_query($connect, "DROP PROCEDURE added");
   mysqli_query($connect, "CREATE PROCEDURE added @id INT(11), @dt datetime, @y INT(11), @m INT(11), @d INT(11), @ne VARCHAR(45), @a TINYINT(1), @des VARCHAR(45) AS BEGIN
                           INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(@id, @dt, @y, @m, @d);
                           INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(@id, 0, 0, @ne, NULL);
