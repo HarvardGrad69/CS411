@@ -6,8 +6,16 @@
     	printf("Connect failed: %s\n", mysqli_connect_error());
     	exit();
 	}
-  $yoyo = 2;
-  echo $yoyo;
+
+  mysqli_query($connect, "DROP PROCEDURE added");
+  mysqli_query($connect, "CREATE PROCEDURE added @id INT(11), @dt datetime, @y INT(11), @m INT(11), @d INT(11), @ne VARCHAR(45), @a TINYINT(1), @des VARCHAR(45) AS BEGIN
+                          -- INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
+                          -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
+                          -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
+                          INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(@id, @dt, @y, @m, @d);
+                          INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(@id, 0, 0, @ne, NULL);
+                          INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(@id, @a, @des, @id, @id);
+                          END;");
 	$data = json_decode(file_get_contents("php://input"));
 	if(count($data) > 0)
 	{
@@ -24,15 +32,7 @@
 		$year = date("y", $timestamp);
 		$day = date("d", $timestamp);
 
-    mysqli_query($connect, "DROP PROCEDURE added");
-    mysqli_query($connect, "CREATE PROCEDURE added @id INT(11), @dt datetime, @y INT(11), @m INT(11), @d INT(11), @ne VARCHAR(45), @a TINYINT(1), @des VARCHAR(45) AS BEGIN
-                            -- INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
-                            -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
-                            -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
-                            INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(@id, @dt, @y, @m, @d);
-                            INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(@id, 0, 0, @ne, NULL);
-                            INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(@id, @a, @des, @id, @id);
-                            END;");
+
 
   //   $ze = 0;
   //   $noo = NULL;
