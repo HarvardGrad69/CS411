@@ -324,6 +324,14 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
             },
             title:{
                 text: 'Crime Numbers by Neighborhood'
+            },
+            yAxis: {
+                title: {
+                    text: 'Crimes'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
             }
         },
         series: null
