@@ -23,17 +23,17 @@
 		$day = date("d", $timestamp);
 
     mysqli_query($connect, "DROP PROCEDURE added");
-    mysqli_query($connect, "CREATE PROCEDURE added() AS BEGIN
-                            INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
-                            INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
-                            INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
-                            -- INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(id, dt, y, m, d);
-                            -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(id, 0, 0, ne, NULL);
-                            -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(id, a, des, id, id);
+    mysqli_query($connect, "CREATE PROCEDURE added(IN id VARCHAR(45), dt VARCHAR(45), y VARCHAR(45), m VARCHAR(45), d VARCHAR(45), ne VARCHAR(45), a VARCHAR(45), des VARCHAR(45)) AS BEGIN
+                            -- INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
+                            -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
+                            -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
+                            INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(id, dt, y, m, d);
+                            INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(id, 0, 0, ne, NULL);
+                            INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(id, a, des, id, id);
                             END;");
 
-    //$qwerty = "call added($ID, $Datetime, $year, $month, $day, $Neighbourhood, $Arrest, $Description)";
-    $qwerty = "call added()";
+    $qwerty = "call added($ID, $Datetime, $year, $month, $day, $Neighbourhood, $Arrest, $Description)";
+    //$qwerty = "call added()";
     $query3 = mysqli_query($connect, $qwerty);
     echo $query3;
 		// $query = "INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day'); ";
