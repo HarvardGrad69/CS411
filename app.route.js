@@ -283,7 +283,7 @@ app.controller("searchCtrl", function($scope, $http, AuthService) {
                 {'Arrest':$scope.newCrime.Arrest, 'Description':$scope.newCrime.Description,'Datetime':$scope.newCrime.Datetime, 'Neighbourhood':$scope.newCrime.Neighbourhood}
             ).success(function(data){
                 console.log(data);
-                alert("Added successfully!");
+                alert(data);
                 $scope.initSearch();
             })
         }
@@ -379,7 +379,7 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
             }
         },
         series: null
-    };     
+    };
     $scope.search = function(){
         if($scope.keyword == null)
             alert("Please input a field");
@@ -517,7 +517,7 @@ app.controller('listCtrl', function ($scope) {
 });
 
 // -------------------------------
-// highcharts-ng module 
+// highcharts-ng module
 // -------------------------------
 angular.module('highcharts-ng', [])
 .directive('highchart', function () {
