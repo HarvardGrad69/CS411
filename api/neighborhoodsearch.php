@@ -29,7 +29,7 @@ if (mysqli_connect_errno()) {
   //$stmt->execute();
   if ($stmt = $mysqli->prepare("SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood
   FROM crime, location, date
-  WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood=?");
+  WHERE crime.LocationID = location.ID and crime.DateID = date.ID and location.neighbourhood=?")) {
   $stmt->bind_param("s", $keyword);
   $stmt->execute();
   $stmt->fetch();
@@ -43,6 +43,8 @@ if (mysqli_connect_errno()) {
     // Hi
 		echo json_encode($output);
 	}
+  $stmt->close();
+}
 
 
 ?>
