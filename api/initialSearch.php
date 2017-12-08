@@ -19,7 +19,7 @@ mysqli_query($connect, "DROP INDEX on_neigh");
 mysqli_query($connect, "CREATE INDEX on_neigh ON location(Neighbourhood)");
 mysqli_query($connect, "ALTER TABLE crime DROP CONSTRAINT CHK_crime");
 mysqli_query($connect, "ALTER TABLE crime WITH CHECK ADD CONSTRAINT CHK_crime CHECK((crime.Description<>N''))");
-mysqli_query($connect, "DROP PROCEDURE searchy");
+mysqli_query($connect, "DROP PROCEDURE searched");
 mysqli_query($connect, "CREATE PROCEDURE `searched`(IN param1 TEXT) AS
                         BEGIN
                         SELECT crime.ID, Arrest, crime.Description, date.Year, Neighbourhood
