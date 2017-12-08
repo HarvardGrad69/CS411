@@ -45,7 +45,6 @@ if (mysqli_connect_errno()) {
 		// 	$output[] = $row;
 		// }
     // Hi
-    echo $res;
     while($result=$res->fetch_assoc()) {
       $output[] = $result;
     }
