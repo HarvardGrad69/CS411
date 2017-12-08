@@ -41,9 +41,9 @@
     //                         INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(@id, @a, @des, @id, @id);
     //                         END;");
 
-    $query3 = mysqli_query($connect, "BEGIN INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
-                            INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
-                            INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID'; END");
+    // $query3 = mysqli_query($connect, "BEGIN ATOMIC INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
+    //                         INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
+    //                         INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID';");
 
   //   $ze = 0;
   //   $noo = NULL;
@@ -55,13 +55,16 @@
   // }
     //$qwerty = "execute added @id='$ID', @dt='$Datetime', @y='$year', @m='$month', @d='$day', @ne='$Neighbourhood', @a='$Arrest', @des='$Description' go";
     //$qwerty = "call added()";
-    $query4 = mysqli_query($connect, $query3);
-    echo $query4;
-		// $query = "INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day'); ";
-		// mysqli_query($connect, $query);
-		// $query2 = "INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL); ";
-		// mysqli_query($connect, $query2);
-		// $query3 = "INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');";
+    //$query4 = mysqli_query($connect, $query3);
+    //echo $query3;
+    mysqli_autocommit($connect, FALSE);
+		$query = "INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day'); ";
+		mysqli_query($connect, $query);
+		$query2 = "INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL); ";
+		mysqli_query($connect, $query2);
+		$query3 = "INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');";
+    mysqli_commit($connect);
+    mysqli_close($connect);
 
     // INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
     // INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
