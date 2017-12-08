@@ -33,7 +33,7 @@
     // mysqli_commit($connect);
     // mysqli_close($connect);
 
-}
+
 
   try {
     $host = 'localhost';
@@ -67,6 +67,7 @@
   echo "Failed: " . $e->getMessage();
   }
 
+}
 
     // INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
     // INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
