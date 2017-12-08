@@ -318,10 +318,11 @@ app.controller('mapCtrl', function($scope,$http, AuthService){
     };
 });
 
-app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, AuthService){
+app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, NeighborhoodArray){
     var year=[]
     var crimeNumber=[]
     var neighborhood
+    $scope.neighborhoods = NeighborhoodArray.neigh
     $scope.chartConfig = {
         options: {
             chart: {
@@ -371,7 +372,7 @@ app.controller('statisticsCtrl', function($scope,$location,$http,$localStorage, 
 });
 
 app.controller('listCtrl', function ($scope) {
-    $scope.people = [
+    $scope.neighborhood = [
         { first: 'Little Italy'},
         { first: 'Sauganash'},
         {first: 'Sauganash'},
