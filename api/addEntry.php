@@ -21,6 +21,7 @@
 		$month = date("m", $timestamp);
 		$year = date("y", $timestamp);
 		$day = date("d", $timestamp);
+    echo $day;
 
     mysqli_query($connect, "DROP PROCEDURE added");
     mysqli_query($connect, "CREATE PROCEDURE added @id INT(11), @dt datetime, @y INT(11), @m INT(11), @d INT(11), @ne VARCHAR(45), @a TINYINT(1), @des VARCHAR(45) AS BEGIN
