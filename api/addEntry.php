@@ -50,13 +50,13 @@
 		$res = array(
 			'ID' => $ID
 		);
-		// if(mysqli_query($connect, $query3))
-		// {
-		// 	echo json_encode($res);
-		// }
-		// else
-		// {
-		//    echo json_encode($query3);
-		// }
+		if(mysqli_query($connect, $query3))
+		{
+			echo json_encode($res);
+		}
+		else
+		{
+		   echo json_encode($query3);
+		}
  	}
  ?>
