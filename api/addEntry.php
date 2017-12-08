@@ -23,7 +23,7 @@
 		$day = date("d", $timestamp);
 
     mysqli_query($connect, "DROP PROCEDURE IF EXISTS addy()");
-    mysqli_query($connect, "CREATE PROCEDURE BEGIN
+    mysqli_query($connect, "CREATE PROCEDURE addy() BEGIN
                             INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day'
                             INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL
                             INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID'
