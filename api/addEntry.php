@@ -17,7 +17,7 @@
 		//Formatting our datetime
 		$date = mysqli_real_escape_string($connect, $data->Datetime);
 		$timestamp = strtotime($date);
-    	$Datetime = date('Y-m-d H:i:s', $timestamp);
+    $Datetime = date('Y-m-d H:i:s', $timestamp);
 		$month = date("m", $timestamp);
 		$year = date("y", $timestamp);
 		$day = date("d", $timestamp);
@@ -27,7 +27,7 @@
                             -- INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES('$ID', '$Datetime', '$year', '$month', '$day');
                             -- INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES('$ID', 0, 0, '$Neighbourhood', NULL);
                             -- INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES('$ID', '$Arrest', '$Description', '$ID', '$ID');
-                            INSERT INTO date(ID, Datetime, Year, Month, Day) VALUES(id, dt, y, m, d);
+                            INSERT INTO date(ID, DateTime, Year, Month, Day) VALUES(id, dt, y, m, d);
                             INSERT INTO location(ID, Latitude, Longitude, Neighbourhood, Description) VALUES(id, 0, 0, ne, NULL);
                             INSERT INTO crime(ID, Arrest, Description, DateID, LocationID) VALUES(id, a, des, id, id);
                             END;");
